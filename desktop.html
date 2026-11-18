@@ -1,0 +1,859 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Arcane Desktop Mock-up</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --page:#060607; --bg:#0B0B0C; --s1:#151517; --s2:#1E1E21; --s3:#2A2A2E;
+  --line:#232327; --line2:#38383D;
+  --text:#F4F4F5; --muted:#8E8E93; --dim:#5C5C61;
+  --orange:#FF7A1A; --orange-soft:rgba(255,122,26,.12); --orange-line:rgba(255,122,26,.35);
+  --green:#4ADE80; --blue:#7DB3FF;
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+}
+[hidden]{display:none!important}
+:root{--meimg:url(data:image/jpeg;base64,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)}
+.me-av{background:var(--meimg) center/cover no-repeat !important;color:transparent}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:radial-gradient(1400px 800px at 50% 40%,#141416 0%,var(--page) 65%);color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+
+/* ---------- page chrome ---------- */
+.top{display:flex;align-items:center;gap:14px;padding:16px 24px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand .wm{font-family:var(--mono);letter-spacing:.32em;font-size:13px;font-weight:500}
+.kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.seg{display:flex;gap:4px;background:var(--s1);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg a,.seg button{font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;color:var(--muted);text-decoration:none}
+.seg .on{background:var(--orange);color:#140800}
+.seg.v .on{background:var(--s3);color:var(--text)}
+.note{font-size:13px;color:var(--muted);margin-left:auto;max-width:520px;line-height:1.45}
+.stagewrap{display:flex;justify-content:center;padding:0 16px 32px}
+.winwrap{width:calc(1280px * var(--sc,1));height:calc(800px * var(--sc,1));flex:none}
+
+/* ---------- window ---------- */
+.win{width:1280px;height:800px;transform:scale(var(--sc,1));transform-origin:top left;border-radius:14px;overflow:hidden;background:var(--bg);
+  box-shadow:0 0 0 1px #2c2c30,0 40px 100px rgba(0,0,0,.7);display:grid;grid-template-columns:248px 1fr;user-select:none;-webkit-user-select:none}
+.side{background:#0E0E10;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:14px 12px 12px}
+.lights{display:flex;gap:8px;padding:2px 6px 18px}
+.lights i{width:12px;height:12px;border-radius:50%;background:#ff5f57}
+.lights i:nth-child(2){background:#febc2e}.lights i:nth-child(3){background:#28c840}
+.logo-row{display:flex;align-items:center;gap:10px;padding:0 8px 16px}
+.logo-row .wm{font-family:var(--mono);letter-spacing:.3em;font-size:13px}
+.newchat{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--s1);font-size:14px;font-weight:500;margin-bottom:14px}
+.newchat kbd{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.nav{display:grid;gap:2px}
+.nav button{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:10px;font-size:14px;color:#C9C9CE;text-align:left}
+.nav button svg{stroke:#8E8E93;flex:none}
+.nav button:hover{background:var(--s1)}
+.nav button.on{background:var(--s2);color:var(--text)}
+.nav button.on svg{stroke:var(--text)}
+.nav .cnt{margin-left:auto;font-size:11px;font-weight:700;background:var(--orange);color:#140800;border-radius:9px;min-width:18px;height:18px;display:grid;place-items:center;padding:0 5px}
+.recent-h{font-size:12px;color:var(--dim);font-weight:600;padding:20px 12px 6px}
+.recent button{display:block;width:100%;text-align:left;padding:7px 12px;border-radius:8px;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.recent button:hover{background:var(--s1);color:var(--text)}
+.me{margin-top:auto;display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;cursor:pointer}
+.me:hover{background:var(--s1)}
+.av{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none;background:var(--s3)}
+.me .nm{font-size:14px;font-weight:500}
+.me .pl{font-size:12px;color:var(--orange)}
+
+.main{position:relative;overflow:hidden;display:flex}
+.view{display:none;flex:1;min-width:0}
+.view.on{display:flex;animation:fade .2s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.pane{flex:1;overflow-y:auto;padding:28px 36px 40px;scrollbar-width:thin;scrollbar-color:#2a2a2e transparent}
+.rail{width:320px;flex:none;border-left:1px solid var(--line);overflow-y:auto;padding:22px 20px;background:#0D0D0F;scrollbar-width:none}
+h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
+.h-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sub{font-size:13px;color:var(--muted);line-height:1.45}
+.card{background:var(--s1);border-radius:18px;padding:18px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;border-radius:999px;background:var(--s2);color:var(--muted);white-space:nowrap}
+.pill.o{color:var(--orange);background:var(--orange-soft)}
+.pill.g{color:var(--green);background:rgba(74,222,128,.1)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border-radius:12px;font-weight:600;font-size:14px}
+.btn.primary{background:var(--orange);color:#140800}
+.btn.ghost{background:var(--s2)}
+.sec{font-size:15px;font-weight:700;margin:4px 2px 12px;display:flex;justify-content:space-between;align-items:baseline}
+.sec .sub{font-weight:400}
+.g-money{color:var(--orange)} .g-health{color:var(--green)} .g-mind{color:var(--blue)}
+.bar{height:5px;border-radius:3px;background:var(--s3);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:3px;background:var(--orange)}
+.chev{color:var(--dim)}
+
+/* tasks */
+.task{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--s1);border-radius:14px;margin-bottom:8px;box-shadow:inset 3px 0 0 var(--orange)}
+.task.done{box-shadow:inset 3px 0 0 var(--s3)}
+.check{width:22px;height:22px;flex:none;border-radius:50%;border:2px solid var(--line2);display:grid;place-items:center}
+.check svg{opacity:0}
+.task.done .check{background:var(--orange);border-color:var(--orange)}
+.task.done .check svg{opacity:1}
+.task .t{font-size:14px;font-weight:500}
+.task.done .t{color:var(--muted);text-decoration:line-through}
+.task .m{font-size:12px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+.help{margin-left:auto;font-size:11px;font-weight:600;color:var(--orange);background:var(--orange-soft);padding:5px 9px;border-radius:999px;flex:none}
+.todo{background:var(--s1);border-radius:14px;padding:0 14px}
+.td{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:14px}
+.td + .td{border-top:1px solid var(--line)}
+.td .cb{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--line2);flex:none;position:relative}
+.td.done span{color:var(--dim);text-decoration:line-through}
+.td.done .cb{background:var(--s3);border-color:var(--s3)}
+.td.done .cb::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid var(--muted);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.td.new{background:linear-gradient(90deg,var(--orange-soft),transparent);margin:0 -14px;padding-left:14px;padding-right:14px}
+.ring{position:relative;width:46px;height:46px;flex:none}
+.ring span{position:absolute;inset:0;display:grid;place-items:center;font-size:13px;font-weight:700}
+
+/* chat */
+.chatcol{flex:1;display:flex;flex-direction:column;min-width:0}
+.msgs{flex:1;overflow-y:auto;padding:72px 0 10px;scrollbar-width:thin;scrollbar-color:#2a2a2e transparent}
+.msgs-in{max-width:720px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:22px}
+.msg{font-size:15px;line-height:1.6;animation:fade .25s ease}
+.msg.a{display:flex;gap:12px}
+.msg.a .av-a{width:28px;height:28px;border-radius:50%;background:var(--s2);display:grid;place-items:center;flex:none}
+.msg.u{background:var(--s2);border-radius:18px;padding:10px 16px;max-width:75%;align-self:flex-end}
+.msg.u .via{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
+.typing{display:flex;gap:4px;padding:8px 0}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bounce 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,100%{opacity:.3}50%{opacity:1}}
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:40px}
+.empty h2{font-size:30px;font-weight:600;letter-spacing:-.02em;margin-top:18px}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.chip{font-size:14px;padding:9px 15px;border-radius:999px;border:1px solid var(--line2);background:var(--s1)}
+.chip:hover{border-color:var(--orange-line)}
+.composer{max-width:720px;width:100%;margin:0 auto;padding:10px 32px 24px}
+.box{border:1px solid var(--line2);background:var(--s1);border-radius:22px;padding:14px 14px 10px 18px}
+.box .field{color:var(--dim);font-size:15px;min-height:26px}
+.box .tools{display:flex;align-items:center;gap:8px;margin-top:8px}
+.box .tools .ib{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--muted)}
+.box .tools .ib:hover{background:var(--s2)}
+.box .hint{font-size:12px;color:var(--dim);margin-left:auto}
+.box .hint kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line2);border-radius:5px;padding:1px 6px;color:var(--muted)}
+.mic{width:36px;height:36px;border-radius:50%;background:var(--orange);display:grid;place-items:center;flex:none;touch-action:none;transition:transform .15s}
+.mic.holding{transform:scale(1.1);box-shadow:0 0 0 6px rgba(255,122,26,.18)}
+
+/* listening */
+.listen{position:absolute;inset:0;background:rgba(5,5,6,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:20;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.listen.on{display:flex;animation:fade .15s ease}
+.bigled{width:14px;height:14px;border-radius:50%;background:#fff;box-shadow:0 0 24px 8px rgba(255,255,255,.5)}
+.wave{display:flex;gap:5px;align-items:center;height:70px;margin:36px 0 26px}
+.wave i{width:5px;border-radius:3px;background:var(--text);animation:wv 1s ease-in-out infinite}
+@keyframes wv{0%,100%{height:10px}50%{height:var(--h)}}
+.heard{font-size:26px;font-weight:600;max-width:640px;min-height:70px}
+.lhint{font-size:14px;color:var(--muted);margin-top:30px}
+
+/* today */
+.days{display:flex;gap:6px}
+.day{display:flex;flex-direction:column;align-items:center;gap:1px;width:58px;padding:8px 0 6px;border-radius:12px;background:var(--s1)}
+.day b{font-size:18px;font-weight:600}
+.day small{font-size:11px;color:var(--muted)}
+.day i{width:4px;height:4px;border-radius:50%;margin-top:3px}
+.day i.full{background:var(--orange)}
+.day.on{background:var(--orange);color:#140800}
+.day.on small{color:#3a1a00}
+.monthbtn{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:9px 14px;border-radius:12px;background:var(--s1)}
+.cols{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;margin-top:26px}
+
+/* goals */
+.weekdots{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:18px;max-width:420px}
+.weekdots .d{display:flex;flex-direction:column-reverse;align-items:center;gap:5px}
+.weekdots i{width:16px;height:16px;border-radius:5px;background:var(--s3)}
+.weekdots i.f{background:var(--orange)}
+.weekdots span{font-size:12px;color:var(--dim);margin-top:4px}
+.goalgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.goal{background:var(--s1);border-radius:18px;padding:18px}
+.goal h3{font-size:16px;font-weight:600;margin:10px 0 16px;line-height:1.3}
+
+/* dashboard */
+.dash{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.w{position:relative;background:var(--s1);border-radius:18px;padding:16px;cursor:pointer;min-height:150px;display:flex;flex-direction:column}
+.w .wh{display:flex;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:12px}
+.w .wh .src{margin-left:auto;font-weight:500;color:var(--dim)}
+.w .big{font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.w .big small{font-size:13px;color:var(--muted);font-weight:500}
+.mbar{display:grid;grid-template-columns:14px 1fr auto;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin-top:8px}
+.mbar b{color:var(--text)}
+.wring{position:relative;flex:none}
+.wring span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-size:18px;font-weight:700;line-height:1}
+.wring span small{display:block;font-size:10px;color:var(--muted);font-weight:500;margin-top:2px}
+.airow{display:flex;align-items:center;gap:10px;padding:8px 0}
+.airow + .airow{border-top:1px solid var(--line)}
+.airow .ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+.airow .t{font-size:14px;font-weight:500}
+.wweek{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:14px}
+.wweek .d{display:flex;flex-direction:column-reverse;align-items:center;gap:3px}
+.wweek i{width:11px;height:11px;border-radius:3px;background:var(--s3)}
+.wweek i.f{background:var(--orange)}
+.wweek span{font-size:10px;color:var(--dim);margin-top:2px}
+.wgoal{padding:7px 0}
+.wgoal + .wgoal{border-top:1px solid var(--line)}
+.wempty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-size:13px;color:var(--muted)}
+.dash.editing .w{animation:jiggle .25s ease-in-out infinite alternate;cursor:default}
+.dash.editing .w:nth-child(even){animation-delay:.12s}
+@keyframes jiggle{from{transform:rotate(-.4deg)}to{transform:rotate(.4deg)}}
+.wx,.wup{position:absolute;top:-8px;width:24px;height:24px;border-radius:50%;display:none;place-items:center;font-size:14px;font-weight:700;z-index:2}
+.wx{left:-8px;background:#3a3a3f;color:#fff}
+.wup{right:-8px;background:var(--s3);color:var(--muted);font-size:12px}
+.dash.editing .wx,.dash.editing .wup{display:grid}
+.sqs i{width:14px;height:14px;border-radius:4px}
+.wdays{display:grid;grid-template-columns:repeat(7,1fr);margin-top:16px;text-align:center}
+.wdays div{display:flex;flex-direction:column;align-items:center;gap:4px}
+.wdays span{font-size:11px;color:var(--dim)}
+.wdays .today span{color:var(--text);font-weight:600}
+.w.made{box-shadow:inset 0 0 0 1px var(--orange-line)}
+.askw{display:flex;align-items:center;gap:12px;width:100%;max-width:460px;padding:12px 14px;border-radius:14px;background:linear-gradient(120deg,rgba(255,122,26,.14),var(--s1) 70%);box-shadow:inset 0 0 0 1px var(--orange-line);margin-bottom:14px;font-size:14px}
+.wtile{border:1.5px dashed var(--line2);border-radius:18px;min-height:150px;font-size:14px;font-weight:600;color:var(--muted)}
+.wtile:hover{border-color:var(--orange-line);color:var(--text)}
+.wongrid{display:grid;grid-template-columns:repeat(9,1fr);gap:5px;margin-top:auto;padding-top:12px}
+.wongrid i{aspect-ratio:1;border-radius:3px;background:var(--s3)}
+.wongrid i.f{background:var(--orange)}
+.wpicker{margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+
+/* chat-first top bar */
+.chattop{position:absolute;top:16px;left:0;right:0;display:flex;justify-content:center;z-index:8;pointer-events:none}
+.chattop > *{pointer-events:auto}
+.sqpill{display:flex;align-items:center;gap:10px;padding:8px 12px 8px 14px;border-radius:999px;background:var(--s1);border:1px solid var(--line)}
+.sqs{display:flex;gap:5px}
+.sqs i{width:13px;height:13px;border-radius:4px;background:var(--s3)}
+.sqs i.f{background:var(--orange)}
+.sqlbl{font-size:12px;color:var(--muted)}
+.sqpill.open .sqchev{transform:rotate(180deg)}
+.sqpanel{position:absolute;top:48px;width:380px;background:var(--s1);border:1px solid var(--line2);border-radius:18px;padding:12px 14px 14px;box-shadow:0 24px 50px rgba(0,0,0,.6);animation:fade .15s ease}
+.sqpanel .task{background:var(--s2)}
+.sqhard{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin-top:4px;border-radius:12px;background:var(--s2);font-size:14px;font-weight:500;cursor:pointer;box-shadow:inset 3px 0 0 #fff}
+.sqopen{display:block;width:100%;margin-top:10px;padding:9px;border-radius:12px;background:var(--s2);font-size:13px;font-weight:600}
+
+/* 75 hard */
+.hardday{font-size:12px;font-weight:500;background:var(--s1);padding:4px 10px;border-radius:999px;color:var(--text)}
+.hardlist{background:var(--s1);border-radius:14px;padding:2px 14px;box-shadow:inset 3px 0 0 #fff}
+.hi{display:flex;align-items:center;gap:10px;padding:9px 0}
+.hi + .hi{border-top:1px solid var(--line)}
+.hi .hc{width:20px;height:20px;border-radius:6px;border:2px solid var(--line2);flex:none;display:grid;place-items:center}
+.hi .hc svg{opacity:0}
+.hi.done .hc{background:#fff;border-color:#fff}
+.hi.done .hc svg{opacity:1}
+.hi .ht{font-size:14px;font-weight:500}
+.hi.done .ht{color:var(--muted);text-decoration:line-through}
+.hi .hs{font-size:12px;color:var(--muted)}
+.hardgoal{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--s1);border-radius:18px;margin-top:14px;cursor:pointer;box-shadow:inset 0 0 0 1px #3a3a3f}
+.hring{position:relative;flex:none;display:grid;place-items:center}
+.hring > span{position:absolute;inset:0;display:grid;place-items:center;font-size:18px;font-weight:700}
+.hring.big > span{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hring.big b{font-size:42px;letter-spacing:-.03em;line-height:1}
+.hring.big small{font-size:12px;color:var(--muted);margin-top:4px}
+.hardtop{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.hardhero{display:flex;align-items:center;gap:30px}
+.hstats{display:grid;gap:12px}
+.hstats div{display:flex;align-items:baseline;gap:8px}
+.hstats b{font-size:24px;font-weight:700}
+.hstats small{font-size:13px;color:var(--muted)}
+.hgrid{display:grid;grid-template-columns:repeat(25,1fr);gap:6px}
+.hgrid i{aspect-ratio:1;border-radius:5px;background:var(--s2)}
+.hgrid i.f{background:#fff}
+.hgrid i.t{box-shadow:inset 0 0 0 2px #fff;background:transparent}
+.hgrid i.t.f{background:#fff}
+
+.hi .pthumb{width:36px;height:36px;border-radius:9px;background-size:cover;background-position:center;margin-left:auto;flex:none}
+.hi .padd{margin-left:auto;font-size:11px;font-weight:600;color:#0b0b0c;background:#fff;padding:5px 10px;border-radius:999px;flex:none}
+.photostrip{display:flex;gap:10px}
+.photostrip .ph{width:96px}
+.photostrip .ph div{height:128px;border-radius:12px;background-size:cover;background-position:center;background-color:var(--s1)}
+.photostrip .ph div.empty{border:1.5px dashed var(--line2);background:none;display:grid;place-items:center;color:var(--dim);font-size:24px;cursor:pointer}
+.photostrip .ph span{display:block;font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+.modal{position:absolute;inset:0;background:rgba(0,0,0,.6);z-index:30;display:grid;place-items:center;animation:fade .15s ease}
+.mcard{width:460px;background:var(--s1);border-radius:20px;padding:18px;border:1px solid var(--line2)}
+.mhead{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:16px}
+.pmchoose{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pmopt{display:flex;flex-direction:column;align-items:center;gap:12px;padding:26px 10px;border-radius:16px;background:var(--s2);font-size:14px;font-weight:600}
+.pmopt:hover{background:var(--s3)}
+.pmview{height:300px;border-radius:14px;background:radial-gradient(ellipse at 50% 35%,#3a3a40 0%,#18181b 55%,#0a0a0b 100%);position:relative;overflow:hidden}
+.pmview::before{content:"";position:absolute;left:50%;top:16%;width:60px;height:60px;margin-left:-30px;border-radius:50%;background:#2a2a2f}
+.pmview::after{content:"";position:absolute;left:50%;top:calc(16% + 68px);width:150px;height:260px;margin-left:-75px;border-radius:70px 70px 16px 16px;background:#26262b}
+.ghostline{position:absolute;inset:8% 28%;border:1.5px dashed rgba(255,255,255,.25);border-radius:22px;z-index:2}
+.pmview.flash{animation:flash .3s ease}
+@keyframes flash{0%{filter:brightness(3)}100%{filter:none}}
+.shutter{width:60px;height:60px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px var(--s1),0 0 0 6px #fff}
+
+/* projects */
+.proj{display:grid;grid-template-columns:1fr 300px;gap:24px}
+.browser{border-radius:14px;overflow:hidden;background:#0f0f11;border:1px solid var(--line)}
+.browser .bar2{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);font-size:12px;color:var(--dim)}
+.browser .bar2 i{width:9px;height:9px;border-radius:50%;background:#2a2a2e}
+.browser .url{margin-left:10px;background:var(--s1);border-radius:6px;padding:4px 12px;flex:1;max-width:340px}
+.site{padding:26px 30px;display:grid;gap:12px}
+.site .nav2{display:flex;justify-content:space-between;align-items:center}
+.site .logo2{font-weight:700;font-size:15px;letter-spacing:.04em}
+.site .links{display:flex;gap:16px;font-size:12px;color:var(--muted)}
+.site .hero{height:170px;border-radius:12px;background:linear-gradient(120deg,#1a1a1d,#2c2c31);display:flex;flex-direction:column;justify-content:center;padding:0 28px;gap:10px}
+.site .hero b{font-size:26px;letter-spacing:-.02em}
+.site .cta{width:120px;height:32px;border-radius:8px;background:var(--orange)}
+.site .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.site .grid3 div{height:84px;border-radius:10px;background:#1a1a1d}
+.site .form{height:60px;border-radius:10px;border:1px dashed #333;display:grid;place-items:center;font-size:12px;color:var(--dim)}
+.agent{display:flex;align-items:center;gap:12px;padding:12px 0}
+.agent + .agent{border-top:1px solid var(--line)}
+.agent .ico{width:34px;height:34px;border-radius:10px;background:var(--s2);display:grid;place-items:center;font-size:11px;font-weight:600;color:var(--muted)}
+.fb{display:flex;gap:8px;margin-top:14px}
+.fb .field{flex:1;height:40px;border-radius:12px;background:var(--s1);border:1px solid var(--line2);display:flex;align-items:center;padding:0 14px;font-size:14px;color:var(--dim)}
+
+/* community */
+.feed{max-width:600px;margin:0 auto}
+.tabs3{display:flex;gap:4px;background:var(--s1);border-radius:12px;padding:3px;width:fit-content;margin-bottom:18px}
+.tabs3 button{font-size:14px;font-weight:500;padding:7px 18px;border-radius:9px;color:var(--muted)}
+.tabs3 button.on{background:var(--s3);color:var(--text)}
+.newpost{display:flex;align-items:center;gap:12px;padding:0 0 16px;border-bottom:1px solid var(--line)}
+.newpost .field{flex:1;height:42px;border-radius:21px;background:var(--s1);display:flex;align-items:center;padding:0 18px;color:var(--dim);font-size:14px}
+.post{padding:18px 0;border-bottom:1px solid var(--line)}
+.post .row{display:flex;align-items:center;gap:10px}
+.post .nm{font-size:14px;font-weight:600}
+.post .tm{font-size:13px;color:var(--dim);font-weight:400}
+.post .bd{font-size:15px;line-height:1.5;margin:8px 0 12px}
+.post .media{height:300px;border-radius:16px;margin-bottom:12px;background:linear-gradient(160deg,#2b2b30 0%,#151517 60%,#0d0d0f 100%);position:relative}
+.post .media.vid::after{content:"";position:absolute;left:50%;top:50%;margin:-14px 0 0 -8px;border-left:24px solid rgba(255,255,255,.9);border-top:14px solid transparent;border-bottom:14px solid transparent}
+.react{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+.react button{display:flex;align-items:center;gap:6px;color:var(--muted)}
+.react button.on{color:var(--orange)}
+.thread{display:flex;align-items:center;gap:12px;padding:10px;border-radius:12px;cursor:pointer}
+.thread:hover{background:var(--s1)}
+.thread .av{width:40px;height:40px;font-size:13px}
+.thread .n2{font-size:14px;font-weight:500}
+.thread .last{font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:190px}
+.thread.unread .n2{font-weight:700}
+.thread.unread .last{color:var(--text)}
+.thread .ud{width:8px;height:8px;border-radius:50%;background:var(--orange);margin-left:auto;flex:none}
+.crew{display:flex;align-items:center;gap:12px;padding:10px 0}
+.crew .bar{flex:1}
+
+/* apps */
+.appgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:26px}
+.app{display:flex;align-items:center;gap:12px;background:var(--s1);border-radius:16px;padding:14px}
+.appi{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:14px;font-weight:700;flex:none}
+.app .nm{font-size:14px;font-weight:600}
+.app .ds{font-size:12px;color:var(--muted)}
+.cbtn{margin-left:auto;font-size:12px;font-weight:600;padding:7px 13px;border-radius:999px;background:var(--orange);color:#140800;flex:none}
+.cbtn.on{background:var(--s2);color:var(--muted)}
+.mini-core{width:12px;height:20px;border-radius:5px;background:#000;border:1px solid #333;position:relative}
+.mini-core::after{content:"";position:absolute;left:-2px;top:6px;width:2px;height:6px;border-radius:1px;background:var(--orange)}
+.toast{position:absolute;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:#0b0b0c;border-radius:12px;padding:11px 16px;font-size:14px;font-weight:500;display:flex;gap:10px;align-items:center;z-index:25;animation:fade .2s ease}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="logo" viewBox="0 0 24 24"><path d="M4.5 20 12 4.5 19.5 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="10.6" cy="15" r="1.25" fill="currentColor"/></symbol>
+  <symbol id="tick" viewBox="0 0 24 24"><path d="m5 12 5 5 9-10" fill="none" stroke="#140800" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="mic" viewBox="0 0 24 24"><g fill="none" stroke="#140800" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></g></symbol>
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+  <symbol id="bubble" viewBox="0 0 24 24"><path d="M20 12a8 8 0 0 1-11.6 7.1L4 20l1-4.2A8 8 0 1 1 20 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="top">
+  <div class="brand"><svg width="22" height="22" style="color:#fff"><use href="#logo"/></svg><span class="wm">ARCANE</span></div>
+  <span class="kicker">Desktop concept</span>
+  <div class="seg"><a href="index.html">Phone</a><a class="on">Desktop</a></div>
+  <div class="seg v" id="version"><button class="on" data-v="c">With community</button><button data-v="n">Without community</button></div>
+  <p class="note" id="note"></p>
+</div>
+
+<div class="stagewrap">
+<div class="winwrap" id="winwrap">
+<div class="win" id="win">
+  <!-- ========== SIDEBAR ========== -->
+  <aside class="side">
+    <div class="lights"><i></i><i></i><i></i></div>
+    <div class="logo-row"><svg width="20" height="20" style="color:#fff"><use href="#logo"/></svg><span class="wm">ARCANE</span></div>
+    <button class="newchat" data-go="chat" id="newChat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>New chat<kbd>⌘N</kbd></button>
+    <nav class="nav">
+      <button data-go="today"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Today<span class="cnt" style="background:var(--s3);color:var(--text)" id="navToday">2/5</span></button>
+      <button data-go="goals"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="9" rx="2"/><rect x="13.5" y="3.5" width="7" height="5" rx="2"/><rect x="13.5" y="11.5" width="7" height="9" rx="2"/><rect x="3.5" y="15.5" width="7" height="5" rx="2"/></svg>Dashboard</button>
+      <button data-go="projects"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>Projects<span class="cnt">1</span></button>
+      <button data-go="community" class="only-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>Community<span class="cnt">3</span></button>
+      <button data-go="apps"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>Apps &amp; devices</button>
+    </nav>
+    <div class="recent-h">Recent</div>
+    <div class="recent">
+      <button data-recent="site">Business website revisions</button>
+      <button data-recent="price">What to charge for short-form</button>
+      <button data-recent="plan">90-day content plan</button>
+      <button data-recent="sleep">Fixing my sleep schedule</button>
+      <button data-recent="andy">Arcane pitch for Andy</button>
+    </div>
+    <div class="me" data-go="apps"><div class="av me-av"></div><div><div class="nm">Matt Graham</div><div class="pl">Pro</div></div></div>
+  </aside>
+
+  <!-- ========== MAIN ========== -->
+  <main class="main">
+
+    <!-- CHAT (default) -->
+    <section class="view on" id="v-chat">
+      <div class="chatcol" style="position:relative">
+        <div class="chattop">
+          <button class="sqpill" id="sqPill" aria-label="Today's critical tasks"><span class="sqs" id="sqs"></span><span class="sqlbl" id="sqLbl">2 of 5 done</span><svg class="sqchev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8E8E93" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button>
+          <div class="sqpanel" id="sqDrop" hidden>
+            <div class="sec" style="margin:4px 2px 10px"><span>Critical tasks</span></div>
+            <div class="tasks" data-list="crit"></div>
+            <div class="sqhard" id="sqHard" data-go="hard" hidden><span>75 Hard · Day <b class="hardDayN">1</b></span><span class="sub hardCountN">0/6</span></div>
+            <button class="sqopen" data-go="today">Open Today</button>
+          </div>
+        </div>
+        <div class="empty" id="empty">
+          <svg width="44" height="44" style="color:#fff"><use href="#logo"/></svg>
+          <h2>What do you want to get done?</h2>
+          <div class="chips">
+            <button class="chip" data-q="hard">Start 75 Hard</button>
+            <button class="chip" data-q="dash">Add to my dashboard</button>
+            <button class="chip" data-q="next">What's next?</button>
+            <button class="chip" data-q="week">Plan my week</button>
+            <button class="chip" data-q="build">Build something</button>
+            <button class="chip" data-q="stuck">I'm stuck</button>
+          </div>
+        </div>
+        <div class="msgs" id="msgs" hidden><div class="msgs-in" id="msgsIn"></div></div>
+        <div class="composer"><div class="box">
+          <div class="field">Message Arcane</div>
+          <div class="tools">
+            <button class="ib" aria-label="Attach"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
+            <span class="hint">Hold <kbd>space</kbd> or the mic to talk</span>
+            <button class="mic" id="mic" aria-label="Hold to talk"><svg width="16" height="16"><use href="#mic"/></svg></button>
+          </div>
+        </div></div>
+      </div>
+      <aside class="rail" hidden>
+        <div class="sec"><span>Today</span><span class="sub" id="railCount">2 of 5</span></div>
+        <div class="tasks" data-list="crit"></div>
+        <div data-hardwrap hidden>
+          <div class="sec" style="margin-top:22px"><span>75 Hard</span><button class="hardday" data-go="hard">Day <b class="hardDayN">1</b> · <span class="hardCountN">0/6</span></button></div>
+          <div class="hardlist" data-hardlist></div>
+        </div>
+        <div class="sec" style="margin-top:22px"><span>To-do</span></div>
+        <div class="todo" data-list="todo"></div>
+      </aside>
+    </section>
+
+    <!-- TODAY -->
+    <section class="view" id="v-today">
+      <div class="pane">
+        <div class="h-row"><button class="monthbtn">November 2026 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></button><span style="flex:1"></span><div class="days" id="days"></div></div>
+        <div class="cols">
+          <div>
+            <div class="sec"><span>Critical tasks</span></div>
+            <div class="tasks" data-list="crit"></div>
+            <div data-hardwrap hidden>
+              <div class="sec" style="margin-top:22px"><span>75 Hard</span><button class="hardday" data-go="hard">Day <b class="hardDayN">1</b> · <span class="hardCountN">0/6</span></button></div>
+              <div class="hardlist" data-hardlist></div>
+            </div>
+          </div>
+          <div>
+            <div class="sec"><span>To-do</span></div>
+            <div class="todo" data-list="todo"></div>
+            <p class="sub" style="margin-top:12px;text-align:center">Hold <b style="color:var(--text)">space</b> and tell Arcane what to add</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GOALS -->
+    <section class="view" id="v-goals">
+      <div class="pane">
+        <div class="h-row"><h1>Dashboard</h1><span style="flex:1"></span><button class="btn ghost" id="dashAdd" hidden>+ Add widget</button><button class="btn ghost" id="dashEdit">Edit</button></div>
+        <div class="dash" id="dash"></div>
+        <div id="wPicker" class="wpicker" hidden></div>
+        <div hidden>
+        <div class="card" style="display:flex;gap:40px;align-items:flex-end">
+          <div><div class="sub">This week</div><div style="font-size:34px;font-weight:700;letter-spacing:-.02em"><span id="weekDone">11</span> <span style="font-size:16px;color:var(--muted);font-weight:500">/ 15 critical tasks</span></div><span class="pill o" style="margin-top:10px">4-day streak</span></div>
+          <div class="weekdots" id="weekdots" style="flex:1"></div>
+        </div>
+        <div class="hardgoal" id="hardGoal" data-go="hard" hidden>
+          <div class="hring"><svg width="60" height="60" viewBox="0 0 56 56"><circle cx="28" cy="28" r="23" stroke="#2A2A2E" stroke-width="5" fill="none"/><circle class="hardArc" cx="28" cy="28" r="23" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="144.5" stroke-dashoffset="144.5" transform="rotate(-90 28 28)"/></svg><span class="hardDayN">1</span></div>
+          <div style="flex:1"><div style="font-size:17px;font-weight:700">75 Hard</div><div class="sub"><span class="hardLeft">74</span> days to go · today <span class="hardCountN">0/6</span></div></div>
+          <span class="sub">View progress →</span>
+        </div>
+        <div class="goalgrid">
+          <div class="goal"><span class="pill g">On track</span><h3><span class="dot g-money" style="display:inline-block;width:8px;height:8px;margin-right:8px"></span>Earn $1,000/mo editing video</h3><div class="bar"><i style="width:8%"></i></div><div class="sub" style="margin-top:8px">Week 1 of 13 · Feb 16</div></div>
+          <div class="goal"><span class="pill o">Behind</span><h3><span class="dot g-health" style="display:inline-block;width:8px;height:8px;margin-right:8px"></span>Train 4× a week</h3><div class="bar"><i style="width:50%;background:var(--green)"></i></div><div class="sub" style="margin-top:8px">2 of 4 this week</div></div>
+          <div class="goal"><span class="pill g">On track</span><h3><span class="dot g-mind" style="display:inline-block;width:8px;height:8px;margin-right:8px"></span>Read 12 books this year</h3><div class="bar"><i style="width:25%;background:var(--blue)"></i></div><div class="sub" style="margin-top:8px">3 of 12</div></div>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 75 HARD -->
+    <section class="view" id="v-hard">
+      <div class="pane">
+        <div class="h-row"><h1>75 Hard</h1><span style="flex:1"></span><span class="pill" id="hardSync">Connect 75 Hard app</span></div>
+        <div class="hardtop">
+          <div class="card hardhero">
+            <div class="hring big"><svg width="150" height="150" viewBox="0 0 56 56"><circle cx="28" cy="28" r="24" stroke="#2A2A2E" stroke-width="3.5" fill="none"/><circle class="hardArc" cx="28" cy="28" r="24" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8" transform="rotate(-90 28 28)"/></svg><span><b class="hardDayN">1</b><small>of 75</small></span></div>
+            <div class="hstats">
+              <div><b class="hardDone">0</b><small>days done</small></div>
+              <div><b class="hardLeft">74</b><small>to go</small></div>
+              <div><b>0</b><small>restarts</small></div>
+            </div>
+          </div>
+          <div>
+            <div class="sec"><span>Today</span><span class="sub hardCountN">0/6</span></div>
+            <div class="hardlist" data-hardlist></div>
+          </div>
+        </div>
+        <div class="sec" style="margin-top:28px"><span>Progress photos</span></div>
+        <div class="photostrip" id="photostrip"></div>
+        <div class="sec" style="margin-top:28px"><span>All 75 days</span></div>
+        <div class="hgrid" id="hgrid"></div>
+        <button class="btn ghost" style="margin-top:24px;color:var(--muted)" id="endHard">End 75 Hard</button>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="view" id="v-projects">
+      <div class="pane">
+        <div class="h-row"><h1>Business website</h1><span class="pill g"><span class="dot"></span>Revision 2</span></div>
+        <div class="proj">
+          <div>
+            <div class="browser">
+              <div class="bar2"><i></i><i></i><i></i><span class="url">preview.cutbymatt.co</span></div>
+              <div class="site">
+                <div class="nav2"><span class="logo2">CUT BY MATT</span><span class="links"><span>Work</span><span>Pricing</span><span>Contact</span></span></div>
+                <div class="hero"><b>Video that fills your classes.</b><span class="cta"></span></div>
+                <div class="form">Contact form · moved up per your feedback</div>
+                <div class="grid3"><div></div><div></div><div></div></div>
+              </div>
+            </div>
+            <div class="fb"><div class="field">Tell Arcane what to change…</div><button class="btn ghost" data-q="feedback">Send</button></div>
+          </div>
+          <div>
+            <div class="card">
+              <div class="agent"><div class="ico">RS</div><span style="flex:1;font-size:14px">Research</span><span class="pill g">Done</span></div>
+              <div class="agent"><div class="ico">CR</div><span style="flex:1;font-size:14px">Design · ChatGPT</span><span class="pill g">Done</span></div>
+              <div class="agent"><div class="ico">DV</div><span style="flex:1;font-size:14px">Build · Claude</span><span class="pill o">70%</span></div>
+            </div>
+            <div class="card" id="approve" style="margin-top:12px;box-shadow:inset 0 0 0 1px var(--orange-line)">
+              <div style="font-size:15px;font-weight:600">Buy cutbymatt.co for $12/yr?</div>
+              <div style="display:flex;gap:8px;margin-top:14px"><button class="btn ghost" style="flex:1" data-ap="no">Not yet</button><button class="btn primary" style="flex:1" data-ap="yes">Approve</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMUNITY -->
+    <section class="view" id="v-community">
+      <div class="pane">
+        <div class="feed">
+          <div class="tabs3" id="ctabs"><button class="on" data-c="feed">Feed</button><button data-c="crew">My crew</button><button data-c="live">Live</button></div>
+          <div id="c-feed">
+            <div class="newpost"><div class="av me-av"></div><div class="field">Share something…</div></div>
+            <div class="post"><div class="row"><div class="av" style="background:#3a2414;color:#fdba74">AF</div><span class="nm">Andy Frisella <span class="tm">· 1h</span></span></div><div class="bd">Stop waiting to feel ready. New episode is up.</div><div class="media vid"></div><div class="react"><button class="lk"><svg width="18" height="18"><use href="#heart"/></svg>1.2k</button><button><svg width="18" height="18"><use href="#bubble"/></svg>184</button></div></div>
+            <div class="post"><div class="row"><div class="av" style="background:#1f2937;color:#93c5fd">DM</div><span class="nm">Derek M. <span class="tm">· 2h</span></span></div><div class="bd">30 days. Not one missed 5am workout.</div><div class="react"><button class="lk"><svg width="18" height="18"><use href="#heart"/></svg>48</button><button><svg width="18" height="18"><use href="#bubble"/></svg>6</button></div></div>
+            <div class="post"><div class="row"><div class="av" style="background:#10261b;color:#4ade80">TR</div><span class="nm">Tyler R. <span class="tm">· 5h</span></span></div><div class="bd">Signed my first lawn care contract. Small, but it's real.</div><div class="react"><button class="lk"><svg width="18" height="18"><use href="#heart"/></svg>112</button><button><svg width="18" height="18"><use href="#bubble"/></svg>21</button></div></div>
+          </div>
+          <div id="c-crew" hidden>
+            <div class="card">
+              <div style="display:flex;margin-bottom:6px"><b style="flex:1">Side Income Crew</b><span class="sub">This week</span></div>
+              <div class="crew"><div class="av me-av"></div><span style="width:70px">You</span><div class="bar"><i style="width:70%"></i></div><span class="sub">7/10</span></div>
+              <div class="crew"><div class="av" style="background:#2a1420;color:#f9a8d4">MS</div><span style="width:70px">Marcus</span><div class="bar"><i style="width:90%"></i></div><span class="sub">9/10</span></div>
+              <div class="crew"><div class="av" style="background:#1f2937;color:#93c5fd">LB</div><span style="width:70px">Luis</span><div class="bar"><i style="width:60%"></i></div><span class="sub">6/10</span></div>
+              <div class="crew"><div class="av" style="background:#10261b;color:#4ade80">CH</div><span style="width:70px">Chris</span><div class="bar"><i style="width:40%"></i></div><span class="sub">4/10</span></div>
+            </div>
+          </div>
+          <div id="c-live" hidden>
+            <div class="card" style="box-shadow:inset 0 0 0 1px var(--orange-line)"><span class="pill o"><span class="dot"></span>Thu · 7pm CT</span><div style="font-size:17px;font-weight:600;margin:10px 0 14px">Weekly operator call</div><button class="btn primary">Remind me</button></div>
+          </div>
+        </div>
+      </div>
+      <aside class="rail">
+        <div class="sec"><span>Messages</span></div>
+        <div class="thread unread"><div class="av" style="background:#2a1420;color:#f9a8d4">MS</div><div style="min-width:0;flex:1"><div class="n2">Side Income Crew</div><div class="last">Marcus: who's done all 5 today?</div></div><span class="ud"></span></div>
+        <div class="thread unread"><div class="av" style="background:#1f2937;color:#93c5fd">DM</div><div style="min-width:0;flex:1"><div class="n2">Derek M.</div><div class="last">Send me that reel when it's done</div></div><span class="ud"></span></div>
+        <div class="thread unread"><div class="av" style="background:#2a1c14;color:#fdba74">AK</div><div style="min-width:0;flex:1"><div class="n2">Andre K.</div><div class="last">What are you charging per video?</div></div><span class="ud"></span></div>
+        <div class="thread"><div class="av" style="background:#10261b;color:#4ade80">TR</div><div style="min-width:0;flex:1"><div class="n2">Tyler R.</div><div class="last">You: Congrats on the contract!</div></div></div>
+      </aside>
+    </section>
+
+    <!-- APPS & DEVICES -->
+    <section class="view" id="v-apps">
+      <div class="pane" id="appsPane">
+        <div class="h-row"><h1>Apps &amp; devices</h1><span style="flex:1"></span><span class="sub">You choose what each app can see.</span></div>
+        <div id="appsBody"></div>
+      </div>
+    </section>
+
+    <div class="listen" id="listen">
+      <div class="bigled"></div>
+      <div class="wave" id="wave"></div>
+      <div class="heard" id="heard"></div>
+      <div class="lhint">Let go to send</div>
+    </div>
+    <div class="toast" id="toast" hidden></div>
+    <div class="modal" id="photoModal" hidden>
+      <div class="mcard">
+        <div class="mhead"><b>Progress photo · Day <span id="pmDay">1</span></b><button id="pmClose" aria-label="Close" style="color:var(--muted);font-size:20px">×</button></div>
+        <div id="pmChoose" class="pmchoose">
+          <button class="pmopt" id="pmWebcam"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10" r="6"/><circle cx="12" cy="10" r="2"/><path d="M8 20h8M12 16v4"/></svg>Use webcam</button>
+          <button class="pmopt" id="pmUpload"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>Upload a photo</button>
+          <input type="file" accept="image/*" id="pmInput" hidden>
+        </div>
+        <div id="pmCam" hidden>
+          <div class="pmview" id="pmView"><div class="ghostline"></div></div>
+          <div style="display:flex;justify-content:center;padding:16px 0 4px"><button class="shutter" id="pmShutter" aria-label="Take photo"></button></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+</div>
+</div>
+
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const NOTES={
+  chat:"Opens to Arcane, like ChatGPT or Claude on desktop. Today's 5 critical tasks are the squares at the top (orange = done). Click them for the list. Hold space (or the mic) to talk.",
+  today:"Same Today as the phone, wider: month picker and days across the top, critical tasks on the left, to-do on the right. Hold space here to add a to-do.",
+  goals:"Starts simple: critical tasks, streak, days won and goals. Add widgets as you connect apps: 1st Phorm macros, 75 Hard, your bank, what ChatGPT and Claude are working on, WHOOP and your calendar. Click Edit to remove, reorder or add widgets. Or ask Arcane: hold space here and say \"put my sponsorship deals on my dashboard\".",
+  hard:"75 Hard mode, started by telling Arcane. Day ring, today's 6, progress photos, and all 75 days as squares. The photo task needs a real photo: use the webcam or upload one.",
+  projects:"Desktop is where you review the work: a full preview of what Arcane built, who did each part, feedback in one line, and approvals.",
+  community:"The same feed in the middle, with Messages always open on the right, like Instagram on desktop.",
+  apps:"Every integration on one page. Devices first: the Core, this Mac, your phone. One button per app."
+};
+let current='chat';
+function go(id){
+  $$('.view').forEach(v=>v.classList.toggle('on', v.id==='v-'+id));
+  $$('.nav button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
+  current=id; $('#note').textContent=NOTES[id];
+  $('#sqDrop').hidden=true; $('#sqPill').classList.remove('open');
+}
+$('#sqPill').onclick=()=>{ const open=$('#sqDrop').hidden; $('#sqDrop').hidden=!open; $('#sqPill').classList.toggle('open',open); };
+document.addEventListener('click',e=>{ if(!$('#sqDrop').hidden && !e.target.closest('#sqDrop') && !e.target.closest('#sqPill') && !e.target.closest('[data-ci]')) { $('#sqDrop').hidden=true; $('#sqPill').classList.remove('open'); } });
+document.addEventListener('click',e=>{ const g=e.target.closest('[data-go]'); if(g){ go(g.dataset.go); if(g.id==='newChat') resetChat(); } });
+
+/* tasks (shared between chat rail and Today) */
+const CRIT=[['Hit macros','All day · ↻ Daily','g-health',1],['Publish 2 short-form videos','By noon','g-money',1],['Draft sponsorship revenue tracker','Pushed twice','g-money',0,1],['Send Andy the Arcane mock-up','3:00pm','g-money',0],['Read 1 chapter on business finance','8:30pm · ↻ Daily','g-mind',0]];
+const TODO=[['Get the oil changed',0],['Text Marcus back',0],['Return Amazon package',1]];
+function renderTasks(){
+  $$('[data-list="crit"]').forEach(el=>el.innerHTML=CRIT.map(([t,m,g,d,h],i)=>`<div class="task${d?' done':''}"><button class="check" data-ci="${i}"><svg width="12" height="12"><use href="#tick"/></svg></button><div><div class="t">${t}</div><div class="m"><span class="dot ${g}"></span>${m}</div></div>${h&&!d?'<button class="help" data-q="help">Help</button>':''}</div>`).join(''));
+  $$('[data-list="todo"]').forEach(el=>el.innerHTML=TODO.map(([t,d,n],i)=>`<div class="td${d?' done':''}${n?' new':''}"><button class="cb" data-ti="${i}"></button><span>${t}</span></div>`).join(''));
+  const done=CRIT.filter(c=>c[3]).length;
+  $('#railCount').textContent=`${done} of 5`; $('#navToday').textContent=`${done}/5`;
+  $$('[data-ci]').forEach(b=>b.onclick=()=>{ CRIT[b.dataset.ci][3]^=1; renderTasks(); });
+  $$('[data-ti]').forEach(b=>b.onclick=()=>{ TODO[b.dataset.ti][1]^=1; renderTasks(); });
+  renderWeek(done);
+  $('#sqs').innerHTML=CRIT.map(c=>`<i class="${c[3]?'f':''}"></i>`).join('');
+  $('#sqLbl').textContent=`${done} of 5 done`;
+}
+/* dashboard */
+const APPMAP={phorm:'1st Phorm',bank:'Bank accounts',chatgpt:'ChatGPT',claude:'Claude',whoop:'WHOOP',gcal:'Google Calendar'};
+function appOn(id){ let on=0; try{ APPS.forEach(([,it])=>it.forEach(a=>{ if(a[0]===APPMAP[id]) on=a[2]; })); }catch(e){} return on; }
+function miniRing(p){ const L=56.5; return `<svg width="26" height="26" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#2A2A2E" stroke-width="3.5" fill="none"/>${p>0?`<circle cx="12" cy="12" r="9" stroke="#FF7A1A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-p)}" transform="rotate(-90 12 12)"/>`:''}</svg>`; }
+function arcaneAddWidget(){ if(!DASH.includes('sponsors')) DASH.splice(1,0,'sponsors'); renderDash(); }
+function ringSVG(pct,size,color){ const L=144.5; return `<svg width="${size}" height="${size}" viewBox="0 0 56 56"><circle cx="28" cy="28" r="23" stroke="#2A2A2E" stroke-width="6" fill="none"/><circle cx="28" cy="28" r="23" stroke="${color}" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-Math.min(pct,1))}" transform="rotate(-90 28 28)"/></svg>`; }
+const W={
+  tasks:{name:'Critical tasks',go:'today',render(){ const t=CRIT.filter(c=>c[3]).length, days=[['M',5],['T',4],['W',t],['T',0],['F',0],['S',0],['S',0]];
+    return `<div style="display:flex;align-items:center"><div class="big">${t}<small> of 5 today</small></div><span style="flex:1"></span><div class="sqs">${[0,1,2,3,4].map(k=>`<i class="${k<t?'f':''}"></i>`).join('')}</div></div><div class="wdays">${days.map(([l,n],i)=>`<div class="${i===2?'today':''}">${miniRing(n/5)}<span>${l}</span></div>`).join('')}</div>`; }},
+  sponsors:{name:'Sponsorship deals',src:'Made by Arcane',arcane:1,render(){ return [['Gymshark','$2,000','Signed','g'],['Liquid IV','$1,500','Pending','o'],['Ridge','$1,000','Pending','o']].map(([n,a,s,k])=>`<div class="airow"><div class="ico" style="background:var(--s2);color:var(--text)">${n[0]}</div><div style="flex:1"><div class="t">${n}</div><div class="sub">${a}</div></div><span class="pill ${k}">${s}</span></div>`).join(''); }},
+  streak:{name:'Streak',go:'today',render(){ return `<div class="big" style="font-size:42px">4<small> days</small></div><div class="sub" style="margin-top:4px">All 5 done, 4 days in a row</div><div class="sub" style="margin-top:auto;padding-top:10px">Best: <b style="color:var(--text)">11 days</b></div>`; }},
+  won:{name:'Days won',go:'today',render(){ const cells=Array.from({length:18},(_,i)=>[0,1,3,4,6,7,8,10,11,13,14,15].includes(i)); return `<div class="big" style="font-size:42px">12<small> of 18 this month</small></div><div class="wongrid">${cells.map(f=>`<i class="${f?'f':''}"></i>`).join('')}</div>`; }},
+  macros:{name:'Macros',src:'1st Phorm',need:'phorm',render(){ return `<div style="display:flex;gap:18px;align-items:center"><div style="text-align:center"><div class="wring">${ringSVG(1840/2450,84,'#FF7A1A')}<span>1,840</span></div><div class="sub" style="font-size:11px;margin-top:4px">of 2,450 cal</div></div><div style="flex:1"><div class="mbar"><span>P</span><div class="bar"><i style="width:75%"></i></div><b>165g</b></div><div class="mbar"><span>C</span><div class="bar"><i style="width:70%;background:var(--blue)"></i></div><b>160g</b></div><div class="mbar"><span>F</span><div class="bar"><i style="width:74%;background:var(--green)"></i></div><b>52g</b></div></div></div>`; }},
+  hard:{name:'75 Hard',src:'75 Hard',go:'hard',render(){ if(!hard.on) return `<div style="display:flex;gap:18px;align-items:center"><div class="wring">${ringSVG(0,84,'#fff')}<span style="color:var(--dim)">75</span></div><div><div class="sub" style="margin-bottom:8px">Not started</div><button class="cbtn" data-q="hard" style="margin:0">Start 75 Hard</button></div></div>`; const d=hard.day-1+(hard.done.size===6?1:0);
+    return `<div style="display:flex;gap:18px;align-items:center"><div class="wring">${ringSVG(d/75,84,'#fff')}<span>${hard.day}<small>of 75</small></span></div><div><div class="big" style="font-size:22px">${hard.done.size}/6</div><div class="sub">today</div></div></div>`; }},
+  money:{name:'Money',src:'Bank accounts',need:'bank',render(){ return `<div style="display:flex;align-items:flex-end"><div><div class="sub">Cash</div><div class="big">$18,240</div></div><span style="flex:1"></span><div style="text-align:right"><div class="sub">Sponsorships</div><div style="font-size:18px;font-weight:700;color:var(--green)">+$4,500</div></div></div><div style="display:flex;margin-top:14px;font-size:13px"><span>Spent this month</span><span style="flex:1"></span><span class="sub">$2,310 of $3,500</span></div><div class="bar" style="margin-top:6px;height:6px"><i style="width:66%"></i></div>`; }},
+  ai:{name:'AI at work',src:'ChatGPT · Claude',need:['chatgpt','claude'],go:'projects',render(){ return `<div class="airow"><div class="ico" style="background:#2a1c14;color:#fdba74">C</div><div style="flex:1;min-width:0"><div class="t">Claude is building your website</div><div class="bar" style="margin-top:6px"><i style="width:70%"></i></div></div><span class="sub">70%</span></div><div class="airow"><div class="ico" style="background:#10261b;color:#4ade80">G</div><div style="flex:1"><div class="t">ChatGPT made 3 thumbnails</div><div class="sub">Ready for review</div></div><span class="pill o">Review</span></div>`; }},
+  goals:{name:'Goals',render(){ return [['g-money','Earn $1,000/mo editing video',8,'var(--orange)','On track','g'],['g-health','Train 4× a week',50,'var(--green)','Behind','o'],['g-mind','Read 12 books this year',25,'var(--blue)','On track','g']].map(([c,t,p,col,st,k])=>`<div class="wgoal"><div style="display:flex;align-items:center;gap:8px;font-size:14px;margin-bottom:6px"><span class="dot ${c}"></span><span style="flex:1">${t}</span><span class="pill ${k}" style="padding:3px 8px">${st}</span></div><div class="bar"><i style="width:${p}%;background:${col}"></i></div></div>`).join(''); }},
+  recovery:{name:'Recovery',src:'WHOOP',need:'whoop',render(){ return `<div style="display:flex;gap:18px;align-items:center"><div class="wring">${ringSVG(.78,84,'#4ADE80')}<span>78%</span></div><div class="sub">Slept 7h 40m</div></div>`; }},
+  calendar:{name:'Next up',src:'Google Calendar',need:'gcal',render(){ return `<div class="big" style="font-size:24px">4:30pm</div><div style="font-size:15px;font-weight:500;margin-top:4px">Podcast recording</div><div class="sub" style="margin-top:8px">Then: gym at 6:00</div>`; }}
+};
+let DASH=['tasks','streak','won','goals'], editing=false;
+function connected(w){ return !w.need || [].concat(w.need).some(appOn); }
+function renderDash(){
+  const el=$('#dash'); if(!el) return;
+  el.classList.toggle('editing',editing);
+  el.innerHTML=DASH.map((k,i)=>{ const w=W[k], ok=connected(w);
+    return `<div class="w${w.arcane?' made':''}" data-w="${k}"><button class="wx" data-wx="${k}">−</button>${i?`<button class="wup" data-wup="${i}">←</button>`:''}<div class="wh">${w.name}${w.src&&w.src!==w.name?`<span class="src">${w.arcane?'<svg width="11" height="11" style="color:var(--orange);vertical-align:-1px;margin-right:4px"><use href="#logo"/></svg>':''}${w.src}</span>`:''}</div>${ok?w.render():`<div class="wempty">Connect ${w.src}<button class="cbtn" data-go="apps" style="margin:0">Connect</button></div>`}</div>`; }).join('')
+    + (editing?'':`<button class="wtile" id="wTile">+ Add widgets from your apps</button>`);
+  const tile=$('#wTile'); if(tile) tile.onclick=()=>$('#dashEdit').click();
+  $$('[data-w]').forEach(c=>c.onclick=e=>{ if(editing||e.target.closest('button')) return; const g=W[c.dataset.w].go; if(g) go(g); });
+  $$('[data-wx]').forEach(b=>b.onclick=()=>{ DASH=DASH.filter(k=>k!==b.dataset.wx); renderDash(); });
+  $$('[data-wup]').forEach(b=>b.onclick=()=>{ const i=+b.dataset.wup; [DASH[i-1],DASH[i]]=[DASH[i],DASH[i-1]]; renderDash(); });
+  renderPicker();
+}
+function renderPicker(){
+  const p=$('#wPicker'), rest=Object.keys(W).filter(k=>!DASH.includes(k)&&!W[k].arcane);
+  p.hidden=!editing;
+  p.innerHTML=`<div class="sec"><span>Add a widget</span><span class="sub">Widgets come from the apps you connect</span></div><button class="askw" data-q="dash"><svg width="18" height="18" style="color:#fff"><use href="#logo"/></svg><div style="flex:1;text-align:left"><div style="font-weight:600">Ask Arcane for any widget</div><div class="sub">"Put my sponsorship deals on my dashboard"</div></div></button><div class="appgrid">${rest.map(k=>{ const w=W[k], ok=connected(w); return `<div class="app"><div><div class="nm">${w.name}</div><div class="ds">${w.src||'Built in'}</div></div>${ok?`<button class="cbtn" data-wadd="${k}">Add</button>`:`<button class="cbtn on" data-go="apps">Connect</button>`}</div>`; }).join('')||'<span class="sub">Every widget is on your dashboard.</span>'}</div>`;
+  $$('[data-wadd]').forEach(b=>b.onclick=()=>{ DASH.push(b.dataset.wadd); renderDash(); });
+}
+$('#dashEdit').onclick=()=>{ editing=!editing; $('#dashEdit').textContent=editing?'Done':'Edit'; renderDash(); };
+
+function renderWeek(t){
+  renderDash();
+  const days=[['M',5],['T',4],['W',t],['T',0],['F',0],['S',0],['S',0]];
+  $('#weekDone').textContent=9+t;
+  $('#weekdots').innerHTML=days.map(([l,n])=>`<div class="d"><span>${l}</span>${[0,1,2,3,4].map(k=>`<i class="${k<n?'f':''}"></i>`).join('')}</div>`).join('');
+}
+const DAYS=[[12,'THU',1],[13,'FRI',1],[14,'SAT',0],[15,'SUN',1],[16,'MON',1],[17,'TUE',0],[18,'WED',0]];
+$('#days').innerHTML=DAYS.map(([d,w,f],i)=>`<button class="day${i===6?' on':''}"><b>${d}</b><small>${w}</small><i class="${f?'full':''}"></i></button>`).join('');
+$$('#days .day').forEach(b=>b.onclick=()=>{ $$('#days .day').forEach(x=>x.classList.remove('on')); b.classList.add('on'); });
+
+/* chat */
+const AV='<div class="av-a"><svg width="15" height="15" style="color:#fff"><use href="#logo"/></svg></div>';
+const VIA='<span class="via">Voice</span>';
+const REPLY={
+  next:["What's next?","The sponsorship revenue tracker. I set up the columns: sponsor, deal size, deliverables, due date, paid. Want me to open it in Google Sheets?"],
+  week:["Plan my week","Here's the shape of it: tracker done today, mock-up to Andy this afternoon, then 2 short-form videos a day through Friday. I'll put each day's 5 on your list."],
+  build:["Build something","What do you need, and who is it for? I'll handle research, design and build, then bring it back here for you to review."],
+  stuck:["I'm stuck","On what?"],
+  help:["Help me with: Draft sponsorship revenue tracker","You've pushed this twice. What's in the way?"],
+  goal:["New goal","What do you want to get done?"],
+  dash:["Put my sponsorship deals on my dashboard","Done. I made a Sponsorship deals widget from your tracker: who's signed and what's still pending. It updates when the sheet does.<div style='display:flex;gap:8px;margin-top:10px'><button class='chip' data-go='goals'>See dashboard</button></div>"],
+  hard:["I want to start 75 Hard","Let's go. Six tasks a day for 75 days. Miss one and you start over.<br>Starting today, or already in it?<div style='display:flex;gap:8px;margin-top:10px'><button class='chip' data-hard='1'>Starting today</button><button class='chip' data-hard='23'>I'm on day 23</button></div>"],
+  feedback:["Make the hero headline bigger","Got it. Sending that to the build. New preview in a few minutes."]
+};
+const RECENT={site:"Business website revisions",price:"What to charge for short-form",plan:"90-day content plan",sleep:"Fixing my sleep schedule",andy:"Arcane pitch for Andy"};
+function addMsg(html,cls){ const d=document.createElement('div'); d.className='msg '+cls; d.innerHTML=cls==='a'?AV+`<div>${html}</div>`:html; $('#msgsIn').appendChild(d); $('#msgs').scrollTop=1e6; return d; }
+function ask(text,reply,voice){
+  go('chat'); $('#empty').hidden=true; $('#msgs').hidden=false;
+  addMsg((voice?VIA:'')+text,'u');
+  const t=addMsg('<div class="typing"><i></i><i></i><i></i></div>','a');
+  setTimeout(()=>{ t.remove(); addMsg(reply,'a'); },800);
+}
+function resetChat(){ $('#msgsIn').innerHTML=''; $('#msgs').hidden=true; $('#empty').hidden=false; }
+document.addEventListener('click',e=>{ const q=e.target.closest('[data-q]'); if(q){ const r=REPLY[q.dataset.q]; if(q.dataset.q==='dash'){ editing=false; $('#dashEdit').textContent='Edit'; setTimeout(arcaneAddWidget,850); } ask(r[0],r[1]); } });
+$$('[data-recent]').forEach(b=>b.onclick=()=>{ resetChat(); ask(RECENT[b.dataset.recent],"Picking up where we left off. What do you want to do next on this?"); });
+
+/* hold to talk: mic button or space bar */
+const wave=$('#wave');
+for(let i=0;i<26;i++){ const b=document.createElement('i'); b.style.setProperty('--h',(14+Math.random()*56)+'px'); b.style.animationDelay=(Math.random()*.8)+'s'; wave.appendChild(b); }
+let listening=false, typer, heardText='';
+function startListen(){
+  if(listening) return; listening=true;
+  heardText = current==='today' ? "Add call the bank to my to-do list." : current==='goals' ? "Put my sponsorship deals on my dashboard." : "Block two hours tomorrow morning for editing.";
+  $('#listen').classList.add('on'); $('#mic').classList.add('holding');
+  let i=0; $('#heard').textContent=''; clearInterval(typer);
+  typer=setInterval(()=>{ $('#heard').textContent=heardText.slice(0,++i); if(i>=heardText.length) clearInterval(typer); },30);
+}
+function stopListen(){
+  if(!listening) return; listening=false; clearInterval(typer);
+  $('#listen').classList.remove('on'); $('#mic').classList.remove('holding');
+  if(current==='goals'){ arcaneAddWidget(); toast('Arcane added "Sponsorship deals" to your dashboard'); return; }
+  if(current==='today'){ TODO.unshift(['Call the bank',0,1]); renderTasks(); setTimeout(()=>{ TODO.forEach(t=>t[2]=0); renderTasks(); },2200); toast('Added "Call the bank" to your to-do list'); return; }
+  ask(heardText,"Done. 7:00 to 9:00am tomorrow is blocked for editing.",true);
+}
+let holdT;
+$('#mic').addEventListener('pointerdown',e=>{ e.preventDefault(); $('#mic').setPointerCapture(e.pointerId); holdT=setTimeout(startListen,200); });
+$('#mic').addEventListener('pointerup',()=>{ clearTimeout(holdT); stopListen(); });
+addEventListener('keydown',e=>{ if(e.code==='Space' && !e.repeat){ e.preventDefault(); holdT=setTimeout(startListen,200); } });
+addEventListener('keyup',e=>{ if(e.code==='Space'){ clearTimeout(holdT); stopListen(); } });
+let toastT;
+function toast(msg){ const t=$('#toast'); t.innerHTML=`<svg width="16" height="16" style="color:#0b0b0c"><use href="#logo"/></svg>${msg}`; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
+
+/* projects */
+$$('[data-ap]').forEach(b=>b.onclick=()=>{ $('#approve').innerHTML = b.dataset.ap==='yes' ? '<span class="pill g"><span class="dot"></span>Approved</span> <span class="sub" style="margin-left:6px">cutbymatt.co is yours</span>' : '<span class="pill">Held</span> <span class="sub" style="margin-left:6px">Arcane will ask again at launch</span>'; });
+
+/* community */
+$$('#ctabs button').forEach(b=>b.onclick=()=>{ $$('#ctabs button').forEach(x=>x.classList.remove('on')); b.classList.add('on'); ['feed','crew','live'].forEach(k=>$('#c-'+k).hidden = k!==b.dataset.c); });
+$$('.lk').forEach(b=>b.onclick=()=>b.classList.toggle('on'));
+
+/* apps & devices */
+const APPS=[
+  ['Devices',[['Arcane Core','Wristband · 82%',1,'#000','#fff','core'],['Matt\'s MacBook Pro','This computer',1,'#2a2a2e','#fff','⌘'],['Matt\'s iPhone','Last used now',1,'#2a2a2e','#fff','▯'],['Add a device','Phone, computer or Core',0,'#1E1E21','#8E8E93','+']]],
+  ['AI',[['ChatGPT','Design and images',1,'#10261b','#4ade80','G'],['Claude','Code and writing',1,'#2a1c14','#fdba74','C'],['Grok','',0,'#1E1E21','#fff','X'],['Gemini','',0,'#1f2937','#93c5fd','✦']]],
+  ['Money',[['Bank accounts','Checking, savings, cards',1,'#10261b','#4ade80','$'],['Stripe','',0,'#1f1a33','#a5b4fc','S']]],
+  ['Calendar & email',[['Google Calendar','',1,'#1f2937','#93c5fd','31'],['Gmail','',0,'#2a1414','#fca5a5','M'],['Outlook','',0,'#14202a','#7dd3fc','O']]],
+  ['Health & fitness',[['1st Phorm','Macros and nutrition',1,'#2a1c14','#FF7A1A','1P'],['75 Hard','Daily tasks and streak',0,'#1E1E21','#fff','75'],['Apple Health','',0,'#2a1420','#f9a8d4','♥'],['WHOOP','',0,'#1E1E21','#fff','W'],['MyFitnessPal','',0,'#14202a','#7dd3fc','F']]],
+  ['Work',[['Notion','',0,'#1E1E21','#fff','N'],['Slack','',0,'#2a1420','#f9a8d4','#'],['Google Drive','',0,'#10261b','#4ade80','▲']]]
+];
+function renderApps(){
+  $('#appsBody').innerHTML=APPS.map(([s,items],si)=>`<div class="sec"><span>${s}</span></div><div class="appgrid">${items.map(([n,d,on,bg,fg,ic],ii)=>`<div class="app"><div class="appi" style="background:${bg};color:${fg};${ic==='core'?'border:1px solid #333':''}">${ic==='core'?'<span class="mini-core"></span>':ic}</div><div style="min-width:0"><div class="nm">${n}</div>${d&&(on||ic==='+')?`<div class="ds">${d}</div>`:''}</div>${ic==='+'?'<button class="cbtn" data-add>Add</button>':`<button class="cbtn${on?' on':''}" data-a="${si}-${ii}">${on?'Connected':'Connect'}</button>`}</div>`).join('')}</div>`).join('');
+  $$('[data-a]').forEach(b=>b.onclick=()=>{ const [s,i]=b.dataset.a.split('-'); APPS[s][1][i][2]^=1; renderApps(); if(typeof renderHard==="function") renderHard(); renderDash(); });
+  $$('[data-add]').forEach(b=>b.onclick=()=>toast('On your phone, open Profile → Apps & devices and enter code 482 913'));
+}
+renderApps();
+
+/* 75 Hard mode */
+const HARD_TASKS=[['Workout 1','45 min'],['Workout 2','45 min, outdoors'],['Follow your diet','No cheat meals, no alcohol'],['Drink a gallon of water',''],['Read 10 pages','Nonfiction'],['Progress photo','']];
+const hard={on:false,day:1,done:new Set()};
+function hardApp(){ let on=0; APPS.forEach(([,it])=>it.forEach(a=>{ if(a[0]==='75 Hard') on=a[2]; })); return on; }
+function renderHard(){
+  $$('[data-hardwrap]').forEach(w=>w.hidden=!hard.on); $('#hardGoal').hidden=!hard.on; $('#sqHard').hidden=!hard.on;
+  const n=hard.done.size, full=n===6, daysDone=hard.day-1+(full?1:0);
+  $$('[data-hardlist]').forEach(l=>l.innerHTML=HARD_TASKS.map(([t,s],i)=>{
+    const photo=i===5;
+    const right=photo?(hard.photo?`<button class="pthumb" data-photo style="background-image:url(${hard.photo})" aria-label="Retake"></button>`:`<button class="padd" data-photo>Add photo</button>`):'';
+    return `<div class="hi${hard.done.has(i)?' done':''}"><button class="hc" data-hi="${i}"><svg width="11" height="11"><use href="#tick"/></svg></button><div><div class="ht">${t}</div>${photo&&!hard.photo?'<div class="hs">Take or upload one</div>':(s?`<div class="hs">${s}</div>`:'')}</div>${right}</div>`;
+  }).join(''));
+  $$('[data-hi]').forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.hi;
+    if(i===5){ if(hard.photo){ hard.photo=null; hard.done.delete(5); renderHard(); } else openPhoto(); return; }
+    hard.done.has(i)?hard.done.delete(i):hard.done.add(i); renderHard(); if(hard.done.size===6) toast(`Day ${hard.day} of 75 complete`);
+  });
+  $$('[data-photo]').forEach(b=>b.onclick=openPhoto);
+  renderStrip();
+  $$('.hardDayN').forEach(e=>e.textContent=hard.day);
+  $$('.hardCountN').forEach(e=>e.textContent=`${n}/6`);
+  $$('.hardLeft').forEach(e=>e.textContent=75-daysDone);
+  $$('.hardDone').forEach(e=>e.textContent=daysDone);
+  $$('.hardArc').forEach(c=>{ const L=+c.getAttribute('stroke-dasharray'); c.style.strokeDashoffset=L*(1-daysDone/75); });
+  $('#hgrid').innerHTML=Array.from({length:75},(_,k)=>{ const d=k+1; return `<i class="${d<hard.day||(d===hard.day&&full)?'f':''}${d===hard.day?' t':''}"></i>`; }).join('');
+  const s=$('#hardSync'), ok=hardApp();
+  s.textContent=ok?'Synced with 75 Hard app':'Connect 75 Hard app'; s.className='pill'+(ok?' g':' o'); s.style.cursor=ok?'default':'pointer';
+  s.onclick=ok?null:()=>go('apps');
+}
+document.addEventListener('click',e=>{
+  const h=e.target.closest('[data-hard]'); if(!h) return;
+  e.stopPropagation();
+  hard.on=true; hard.day=+h.dataset.hard; hard.done=new Set(h.dataset.hard==='23'?[0,2]:[]); hard.photo=null;
+  const label=h.textContent; h.parentNode.remove();
+  addMsg(label,'u');
+  const t=addMsg('<div class="typing"><i></i><i></i><i></i></div>','a');
+  setTimeout(()=>{ t.remove(); addMsg(`Done. 75 Hard is on your list now, on the right and in Today. Progress is in Goals.${hardApp()?'':' Connect the 75 Hard app and I\'ll keep both in sync.'}<div style='display:flex;gap:8px;margin-top:10px'><button class='chip' data-go='hard'>See progress</button></div>`,'a'); renderHard(); },800);
+},true);
+$('#endHard').onclick=()=>{ hard.on=false; hard.done.clear(); hard.photo=null; renderHard(); go('goals'); };
+
+/* progress photo: webcam or upload */
+function fakePhoto(seed){
+  const c=document.createElement('canvas'); c.width=300; c.height=400; const x=c.getContext('2d');
+  const g=x.createRadialGradient(150,130,20,150,160,320); g.addColorStop(0,`hsl(30,6%,${26+seed%6}%)`); g.addColorStop(1,'#0a0a0b'); x.fillStyle=g; x.fillRect(0,0,300,400);
+  x.fillStyle='#3b3b41'; x.beginPath(); x.arc(150,105,34,0,7); x.fill();
+  const w=118-(seed%5)*3; x.beginPath(); x.roundRect(150-w/2,148,w,260,[50,50,10,10]); x.fill();
+  return c.toDataURL('image/jpeg',.8);
+}
+var PAST=[1,8,15,22];
+function renderStrip(){
+  const past=PAST.filter(d=>d<hard.day);
+  $('#photostrip').innerHTML=past.map(d=>`<div class="ph"><div style="background-image:url(${fakePhoto(d)})"></div><span>Day ${d}</span></div>`).join('')
+    + `<div class="ph">${hard.photo?`<div style="background-image:url(${hard.photo})"></div>`:`<div class="empty" data-photo>+</div>`}<span>Day ${hard.day}</span></div>`;
+  $$('#photostrip [data-photo]').forEach(b=>b.onclick=openPhoto);
+}
+function openPhoto(){ $('#pmDay').textContent=hard.day; $('#pmChoose').hidden=false; $('#pmCam').hidden=true; $('#photoModal').hidden=false; }
+function setPhoto(url){ hard.photo=url; hard.done.add(5); $('#photoModal').hidden=true; renderHard(); toast(hard.done.size===6?`Day ${hard.day} of 75 complete`:`Photo saved to day ${hard.day}`); }
+$('#photoModal').onclick=e=>{ if(e.target.id==='photoModal') $('#photoModal').hidden=true; };
+$('#pmClose').onclick=()=>$('#photoModal').hidden=true;
+$('#pmWebcam').onclick=()=>{ $('#pmChoose').hidden=true; $('#pmCam').hidden=false; };
+$('#pmShutter').onclick=()=>{ const v=$('#pmView'); v.classList.remove('flash'); void v.offsetWidth; v.classList.add('flash'); setTimeout(()=>setPhoto(fakePhoto(hard.day)),300); };
+$('#pmUpload').onclick=()=>$('#pmInput').click();
+$('#pmInput').onchange=e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>setPhoto(r.result); r.readAsDataURL(f); e.target.value=''; };
+renderHard();
+
+/* version */
+$$('#version button').forEach(b=>b.onclick=()=>{
+  const c=b.dataset.v==='c';
+  $$('#version button').forEach(x=>x.classList.toggle('on',x===b));
+  $$('.only-c').forEach(el=>el.hidden=!c);
+  if(!c && current==='community') go('chat');
+});
+
+/* fit */
+function fit(){ const sc=Math.min(1,(innerWidth-32)/1280,(innerHeight-90)/800); $('#winwrap').style.setProperty('--sc',sc); $('#win').style.setProperty('--sc',sc); }
+addEventListener('resize',fit); fit();
+renderTasks(); go('chat');
+</script>
+</body>
+</html>
