@@ -203,7 +203,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .corechip .batt{width:18px;height:9px;border-radius:2.5px;border:1.3px solid currentColor;position:relative;padding:1px}
 .corechip .batt::after{content:"";position:absolute;right:-3.5px;top:2px;width:2px;height:3px;border-radius:0 1px 1px 0;background:currentColor}
 .corechip .batt i{display:block;height:100%;border-radius:1px;background:currentColor}
-.corechip.off{color:var(--dim);opacity:.6}
+.corechip.off{color:var(--dim);opacity:.6;padding:0 10px}
 .corechip.off .cc{border-color:#333}
 .corechip.off .cc::after{background:var(--dim)}
 .task.slideout{transform:translateX(115%);opacity:0;transition:transform .28s cubic-bezier(.4,0,.6,1), opacity .28s, height .3s, margin .3s, padding .3s}
@@ -1481,7 +1481,7 @@ function updateRing(){
 function renderCoreChip(){
   const on=appOn('core'), c=$('#coreChip');
   c.classList.toggle('off',!on);
-  c.innerHTML = on ? `<span class="cc"></span><span class="batt"><i style="width:82%"></i></span>82%` : `<span class="cc"></span><span class="batt"></span>`;
+  c.innerHTML = on ? `<span class="cc"></span>82%` : `<span class="cc"></span>`;
   c.title = on ? 'Arcane Core · 82%' : 'No Core connected';
   c.onclick = ()=>go(on?'device':'apps');
 }
