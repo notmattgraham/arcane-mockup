@@ -245,6 +245,18 @@ h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
 .shard.top.go{transform:translate(46px,-20px) rotate(-4deg);opacity:0}
 .shard.bot.go{transform:translate(-46px,20px) rotate(3deg);opacity:0}
 
+/* announcements */
+.offav{background:#000 !important;border:1px solid #333;position:relative}
+.offav::before{content:"";position:absolute;left:-2px;top:30%;width:2.5px;height:40%;border-radius:2px;background:var(--orange)}
+.vbadge{vertical-align:-2px;margin-left:5px}
+.pinlbl{font-size:11px;font-weight:500;color:var(--dim);margin-left:6px}
+.thread.official{background:linear-gradient(90deg,rgba(255,122,26,.07),transparent 70%)}
+.annpanel{display:grid;gap:8px;margin:6px 0 12px}
+.ann{background:var(--s1);border-radius:14px;padding:12px 14px;box-shadow:inset 3px 0 0 var(--orange)}
+.annt{font-size:14px;font-weight:700;margin-bottom:3px}
+.annb{font-size:13px;line-height:1.45;color:#d4d4d8}
+.readonly{text-align:center;font-size:12px;color:var(--dim);padding:4px 0}
+
 /* daily briefing */
 .dpin{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:10px;font-size:14px;font-weight:600;margin-top:14px;box-shadow:inset 0 0 0 1px var(--orange-line)}
 .dpin.on,.dpin:hover{background:var(--s1)}
@@ -417,7 +429,7 @@ h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
       <button data-go="today"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg>Today<span class="cnt" style="background:var(--s3);color:var(--text)" id="navToday">2/5</span></button>
       <button data-go="goals"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="9" rx="2"/><rect x="13.5" y="3.5" width="7" height="5" rx="2"/><rect x="13.5" y="11.5" width="7" height="9" rx="2"/><rect x="3.5" y="15.5" width="7" height="5" rx="2"/></svg>Dashboard</button>
       <button data-go="projects"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></svg>Projects<span class="cnt">1</span></button>
-      <button data-go="community" class="only-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>Community<span class="cnt">3</span></button>
+      <button data-go="community" class="only-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.2a6.5 6.5 0 0 1 3.5 5.8"/></svg>Community<span class="cnt">4</span></button>
       <button data-go="apps"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>Apps &amp; devices</button>
     </nav>
     <button class="dpin" id="pinBrief"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FF7A1A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5M9 3h6l-1 6 3 3H7l3-3z"/></svg>Daily briefing</button>
@@ -619,6 +631,13 @@ h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
       </div>
       <aside class="rail">
         <div class="sec"><span>Messages</span></div>
+        <div class="thread unread official" id="annThread"><div class="av offav"><svg width="20" height="20" style="color:#fff"><use href="#logo"/></svg></div><div style="min-width:0;flex:1"><div class="n2">Arcane<svg class="vbadge" width="13" height="13" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#FF7A1A"/><path d="m7.5 12.3 3 3 6-6.3" fill="none" stroke="#140800" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="pinlbl">Pinned</span></div><div class="last">New: your Daily briefing is here</div></div><span class="ud"></span></div>
+        <div class="annpanel" id="annPanel" hidden>
+          <div class="ann"><div class="annt">New: Daily briefing</div><div class="annb">The first time you open Arcane each day, you get a recap of yesterday, today's 5, your calendar and where to start.</div></div>
+          <div class="ann"><div class="annt">Coming Dec 1: Arcane Core pre-orders</div><div class="annb">One core, six ways to wear it.</div></div>
+          <div class="ann"><div class="annt">New: 75 Hard mode</div><div class="annb">Tell Arcane "I want to start 75 Hard."</div></div>
+          <div class="readonly">Only the Arcane team can post here</div>
+        </div>
         <div class="thread unread"><div class="av" style="background:#1E1E21;color:#F4F4F5">MS</div><div style="min-width:0;flex:1"><div class="n2">Side Income Crew</div><div class="last">Marcus: who's done all 5 today?</div></div><span class="ud"></span></div>
         <div class="thread unread"><div class="av" style="background:#1E1E21;color:#F4F4F5">DM</div><div style="min-width:0;flex:1"><div class="n2">Derek M.</div><div class="last">Send me that reel when it's done</div></div><span class="ud"></span></div>
         <div class="thread unread"><div class="av" style="background:#1E1E21;color:#F4F4F5">AK</div><div style="min-width:0;flex:1"><div class="n2">Andre K.</div><div class="last">What are you charging per video?</div></div><span class="ud"></span></div>
@@ -943,6 +962,7 @@ function fit(){ const sc=Math.min(1,(innerWidth-32)/1280,(innerHeight-90)/800); 
 addEventListener('resize',fit); fit();
 renderTasks(); go('chat');
 $('#pinBrief').onclick=showBriefing;
+$('#annThread').onclick=()=>{ $('#annPanel').hidden=!$('#annPanel').hidden; $('#annThread').classList.remove('unread'); const u=$('#annThread .ud'); if(u) u.remove(); };
 $('#composerField').onclick=()=>{ if(briefing) resetChat(); };
 showBriefing();
 
