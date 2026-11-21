@@ -14,7 +14,7 @@
   --line:#26262A; --line2:#38383D;
   --text:#F4F4F5; --muted:#8E8E93; --dim:#5C5C61;
   --orange:#FF7A1A; --orange-soft:rgba(255,122,26,.12); --orange-line:rgba(255,122,26,.35);
-  --green:#4ADE80; --blue:#7DB3FF; --led:#FFFFFF;
+  --green:#FF7A1A; --blue:#FFB070; --led:#FFFFFF;
   --mono:'JetBrains Mono',ui-monospace,monospace;
   --sans:'Inter',system-ui,-apple-system,sans-serif;
 }
@@ -91,7 +91,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .btn.sm{height:40px;font-size:14px;border-radius:12px}
 .pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:5px 10px;border-radius:999px;background:var(--s2);color:var(--muted);white-space:nowrap}
 .pill.o{color:var(--orange);background:var(--orange-soft)}
-.pill.g{color:var(--green);background:rgba(74,222,128,.1)}
+.pill.g{color:var(--green);background:rgba(255,122,26,.1)}
 .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex:none}
 .section-label{font-size:13px;font-weight:600;color:var(--muted);margin:22px 4px 10px}
 .row{display:flex;align-items:center;gap:12px}
@@ -172,6 +172,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .sqrow{display:flex;align-items:center;gap:12px;padding:11px 0}
 .sqrow + .sqrow{border-top:1px solid var(--line)}
 .sqrow .check{width:22px;height:22px}
+.sqrow .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .sqrow .t{font-size:15px;font-weight:500}
 .sqrow.done .t{color:var(--muted);text-decoration:line-through}
 .sqrow.done .check{background:var(--orange);border-color:var(--orange)}
@@ -315,6 +316,12 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .hgrid i.t.f{background:#fff}
 .addhint{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--dim);margin-top:12px}
 .toast{position:absolute;left:16px;right:16px;bottom:108px;background:var(--text);color:#0b0b0c;border-radius:14px;padding:12px 14px;font-size:14px;font-weight:500;display:flex;gap:10px;align-items:center;z-index:36;animation:fade .25s ease}
+.task{height:66px;margin-bottom:8px}
+.task .tb{flex:1;min-width:0}
+.task .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.task .rec{margin-left:0;color:var(--muted)}
+.tabav{width:26px;height:26px;border-radius:50%;display:block;opacity:.75}
+.tab.on .tabav{opacity:1;box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px #fff}
 .inbox{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--s1);border-radius:18px;cursor:pointer}
 .inbox .n{width:26px;height:26px;border-radius:50%;background:var(--orange);color:#140800;font-size:13px;font-weight:700;display:grid;place-items:center;flex:none}
 
@@ -611,11 +618,11 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <div class="scroll" id="todayScroll">
             <div class="sec-title"><span>Critical tasks</span></div>
             <div id="tasks">
-              <div class="task done"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div><div class="t">Hit macros</div><div class="m"><span class="dot g-health"></span>All day<span class="rec" title="Recurring">↻ Daily</span></div></div></div>
-              <div class="task done"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div><div class="t">Publish 2 short-form videos</div><div class="m"><span class="dot g-money"></span>By noon</div></div></div>
-              <div class="task"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div><div class="t">Draft sponsorship revenue tracker</div><div class="m"><span class="dot g-money"></span>Pushed twice</div></div><button class="help" data-ask="help">Help</button></div>
-              <div class="task"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div><div class="t">Send Andy the Arcane mock-up</div><div class="m"><span class="dot g-money"></span>3:00pm</div></div></div>
-              <div class="task"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div><div class="t">Read 1 chapter on business finance</div><div class="m"><span class="dot g-mind"></span>8:30pm<span class="rec">↻ Daily</span></div></div></div>
+              <div class="task done"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Hit macros</div><div class="m"><span class="rec">↻ Recurring</span></div></div></div>
+              <div class="task done"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Publish 2 short-form videos</div></div></div>
+              <div class="task"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Draft sponsorship revenue tracker</div></div><button class="help" data-ask="help">Help</button></div>
+              <div class="task"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Send Andy the Arcane mock-up</div></div></div>
+              <div class="task"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Read 1 chapter on business finance</div><div class="m"><span class="rec">↻ Recurring</span></div></div></div>
             </div>
 
             <div id="hardSec" hidden>
@@ -729,30 +736,30 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
         <!-- ================= COMMUNITY ================= -->
         <section class="view" id="v-community" data-tabs="1" data-tab="community">
           <div class="topbar"><h1>Community</h1><button class="iconbtn dmbtn" data-go="inbox" aria-label="Messages"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4 18-7Z"/></svg><span class="badge" id="dmBadge">3</span></button></div>
-          <div style="padding:0 20px 8px"><div class="seg3" id="cseg"><button class="on" data-c="feed">Feed</button><button data-c="crew">My crew</button><button data-c="live">Live</button></div></div>
+          <div style="padding:0 20px 8px"><div class="seg3" id="cseg"><button class="on" data-c="feed">Feed</button><button data-c="crew">Crew</button><button data-c="live">Live</button></div></div>
           <div class="scroll">
             <div class="cpane on" id="c-feed">
               <div class="newpost"><div class="av me-av" style="background:var(--s3)"></div><div class="field">Share something…</div></div>
               <div id="feed">
                 <div class="post">
-                  <div class="row"><div class="av" style="background:#3a2414;color:#fdba74">AF</div><div class="nm">Andy Frisella <span class="tm">· 1h</span></div><span class="more">···</span></div>
+                  <div class="row"><div class="av" style="background:#1E1E21;color:#F4F4F5">AF</div><div class="nm">Andy Frisella <span class="tm">· 1h</span></div><span class="more">···</span></div>
                   <div class="bd">Stop waiting to feel ready. New episode is up.</div>
                   <div class="media vid"><span class="badge">24:10</span></div>
                   <div class="react"><button><svg width="18" height="18" fill="none"><use href="#heart"/></svg><span>1.2k</span></button><button><svg width="18" height="18"><use href="#bubble"/></svg>184</button><button><svg width="18" height="18"><use href="#share"/></svg></button></div>
                 </div>
                 <div class="post">
-                  <div class="row"><div class="av" style="background:#1f2937;color:#93c5fd">DM</div><div class="nm">Derek M. <span class="tm">· 2h</span></div><span class="more">···</span></div>
+                  <div class="row"><div class="av" style="background:#1E1E21;color:#F4F4F5">DM</div><div class="nm">Derek M. <span class="tm">· 2h</span></div><span class="more">···</span></div>
                   <div class="bd">30 days. Not one missed 5am workout.</div>
                   <div class="media"></div>
                   <div class="react"><button><svg width="18" height="18" fill="none"><use href="#heart"/></svg><span>48</span></button><button><svg width="18" height="18"><use href="#bubble"/></svg>6</button><button><svg width="18" height="18"><use href="#share"/></svg></button></div>
                 </div>
                 <div class="post">
-                  <div class="row"><div class="av" style="background:#10261b;color:#4ade80">TR</div><div class="nm">Tyler R. <span class="tm">· 5h</span></div><span class="more">···</span></div>
+                  <div class="row"><div class="av" style="background:#1E1E21;color:#F4F4F5">TR</div><div class="nm">Tyler R. <span class="tm">· 5h</span></div><span class="more">···</span></div>
                   <div class="bd">Signed my first lawn care contract. Small, but it's real.</div>
                   <div class="react"><button><svg width="18" height="18" fill="none"><use href="#heart"/></svg><span>112</span></button><button><svg width="18" height="18"><use href="#bubble"/></svg>21</button><button><svg width="18" height="18"><use href="#share"/></svg></button></div>
                 </div>
                 <div class="post">
-                  <div class="row"><div class="av" style="background:#2a1c14;color:#fdba74">AK</div><div class="nm">Andre K. <span class="tm">· 1d</span></div><span class="more">···</span></div>
+                  <div class="row"><div class="av" style="background:#1E1E21;color:#F4F4F5">AK</div><div class="nm">Andre K. <span class="tm">· 1d</span></div><span class="more">···</span></div>
                   <div class="bd">Anyone doing video for local businesses? How are you pricing?</div>
                   <div class="react"><button><svg width="18" height="18" fill="none"><use href="#heart"/></svg><span>9</span></button><button><svg width="18" height="18"><use href="#bubble"/></svg>14</button><button><svg width="18" height="18"><use href="#share"/></svg></button></div>
                 </div>
@@ -763,10 +770,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
               <div class="card" style="margin-top:4px">
                 <div class="row" style="margin-bottom:6px"><h3 style="flex:1">Side Income Crew</h3><span class="sub">This week</span></div>
                 <div class="crew"><div class="av me-av" style="background:var(--s3)"></div><span class="nm">You</span><div class="bar"><i style="width:70%"></i></div><span class="p">7/10</span></div>
-                <div class="crew"><div class="av" style="background:#2a1420;color:#f9a8d4">MS</div><span class="nm">Marcus</span><div class="bar"><i style="width:90%"></i></div><span class="p">9/10</span></div>
-                <div class="crew"><div class="av" style="background:#1f2937;color:#93c5fd">LB</div><span class="nm">Luis</span><div class="bar"><i style="width:60%"></i></div><span class="p">6/10</span></div>
-                <div class="crew"><div class="av" style="background:#10261b;color:#4ade80">CH</div><span class="nm">Chris</span><div class="bar"><i style="width:40%"></i></div><span class="p">4/10</span></div>
-                <div class="crew"><div class="av" style="background:#2a1c14;color:#fdba74">NO</div><span class="nm">Nate</span><div class="bar"><i style="width:10%"></i></div><span class="p">1/10</span></div>
+                <div class="crew"><div class="av" style="background:#1E1E21;color:#F4F4F5">MS</div><span class="nm">Marcus</span><div class="bar"><i style="width:90%"></i></div><span class="p">9/10</span></div>
+                <div class="crew"><div class="av" style="background:#1E1E21;color:#F4F4F5">LB</div><span class="nm">Luis</span><div class="bar"><i style="width:60%"></i></div><span class="p">6/10</span></div>
+                <div class="crew"><div class="av" style="background:#1E1E21;color:#F4F4F5">CH</div><span class="nm">Chris</span><div class="bar"><i style="width:40%"></i></div><span class="p">4/10</span></div>
+                <div class="crew"><div class="av" style="background:#1E1E21;color:#F4F4F5">NO</div><span class="nm">Nate</span><div class="bar"><i style="width:10%"></i></div><span class="p">1/10</span></div>
               </div>
               <button class="btn ghost sm" id="crewChat">Open crew chat</button>
             </div>
@@ -774,14 +781,14 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
             <div class="cpane" id="c-live">
               <div class="card accent" style="margin-top:4px">
                 <span class="pill o"><span class="dot"></span>Thu · 7pm CT</span>
-                <h3 style="margin-top:10px">Weekly operator call</h3>
+                <h3 style="margin-top:10px">Founders call with Andy Frisella</h3>
                 <button class="btn primary sm" style="margin-top:12px" id="remind">Remind me</button>
               </div>
               <div class="section-label">Replays</div>
               <div class="card">
-                <div class="ep"><div class="thumb"></div><div><h3>How to speak on camera</h3><div class="sub">58 min</div></div></div>
-                <div class="ep" style="margin-top:12px"><div class="thumb"></div><div><h3>Beyond the content</h3><div class="sub">61 min</div></div></div>
-                <div class="ep" style="margin-top:12px"><div class="thumb"></div><div><h3>Content creation basics</h3><div class="sub">54 min</div></div></div>
+                <div class="ep"><div class="thumb"></div><div><h3>Partner training with Matt Graham</h3><div class="sub">58 min</div></div></div>
+                <div class="ep" style="margin-top:12px"><div class="thumb"></div><div><h3>Operator success with Chris Mohme</h3><div class="sub">61 min</div></div></div>
+                <div class="ep" style="margin-top:12px"><div class="thumb"></div><div><h3>Live with Andy Frisella</h3><div class="sub">54 min</div></div></div>
               </div>
             </div>
           </div>
@@ -1020,7 +1027,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           <button class="tab" data-go="goals" data-t="goals"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="7" height="9" rx="2"/><rect x="13.5" y="3.5" width="7" height="5" rx="2"/><rect x="13.5" y="11.5" width="7" height="9" rx="2"/><rect x="3.5" y="15.5" width="7" height="5" rx="2"/></svg>Dashboard</button>
           <button class="talk" id="talk" data-hold aria-label="Tap to chat, hold to talk"><svg width="26" height="26" style="color:#fff"><use href="#logo"/></svg></button>
           <button class="tab" id="tab4" data-go="community" data-t="community"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" id="tab4ico"></svg><span id="tab4lbl">Community</span></button>
-          <button class="tab" data-go="profile" data-t="profile"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Profile</button>
+          <button class="tab" data-go="profile" data-t="profile"><span class="tabav me-av"></span>Matt</button>
         </nav>
 
         <div class="homebar"></div>
@@ -1094,7 +1101,7 @@ const NOTES = {
     "Today is still one tap away for the full view: days, 75 Hard and to-do."]},
   community:{t:"Community",r:"§14",b:[
     "Feed: a regular social feed. Posts, photos, video, likes, comments, share.",
-    "My crew: everyone's critical tasks this week, plus a crew chat.",
+    "Crew: everyone's critical tasks this week, plus a crew chat.",
     "Live: the next call and the replays."]},
   inbox:{t:"Messages",r:"Community · DMs",b:[
     "Opened from the paper-plane icon at the top right of Community, like Instagram DMs. The badge counts unread threads.",
@@ -1413,13 +1420,13 @@ const W={
     return `<div class="row" style="align-items:flex-end"><div><div class="sub">Cash</div><div class="big">$18,240</div></div><span class="spacer"></span><div style="text-align:right"><div class="sub">Sponsorships</div><div style="font-size:17px;font-weight:700;color:var(--green)">+$4,500</div><div class="sub" style="font-size:11px">2 pending</div></div></div>
       <div class="row" style="margin-top:14px;font-size:13px"><span class="sub" style="color:var(--text)">Spent this month</span><span class="spacer"></span><span class="sub">$2,310 of $3,500</span></div><div class="bar" style="margin-top:6px;height:6px"><i style="width:66%"></i></div>`; }},
   ai:{name:'AI at work',src:'ChatGPT · Claude',need:['chatgpt','claude'],wide:1,go:'projects',render(){
-    return `<div class="airow"><div class="ico" style="background:#2a1c14;color:#fdba74">C</div><div style="flex:1;min-width:0"><div class="t">Claude is building your website</div><div class="bar" style="margin-top:6px"><i style="width:70%"></i></div></div><span class="sub">70%</span></div>
-      <div class="airow"><div class="ico" style="background:#10261b;color:#4ade80">G</div><div style="flex:1"><div class="t">ChatGPT made 3 thumbnails</div><div class="s">Ready for review</div></div><span class="pill o">Review</span></div>`; }},
+    return `<div class="airow"><div class="ico" style="background:#1E1E21;color:#F4F4F5">C</div><div style="flex:1;min-width:0"><div class="t">Claude is building your website</div><div class="bar" style="margin-top:6px"><i style="width:70%"></i></div></div><span class="sub">70%</span></div>
+      <div class="airow"><div class="ico" style="background:#1E1E21;color:#F4F4F5">G</div><div style="flex:1"><div class="t">ChatGPT made 3 thumbnails</div><div class="s">Ready for review</div></div><span class="pill o">Review</span></div>`; }},
   goals:{name:'Goals',wide:1,need:null,go:'plan',render(){
     return [['g-money','Earn $1,000/mo editing video',8,'var(--orange)','On track','g'],['g-health','Train 4× a week',50,'var(--green)','Behind','o'],['g-mind','Read 12 books this year',25,'var(--blue)','On track','g']]
       .map(([c,t,p,col,st,k])=>`<div class="wgoal"><div class="row"><span class="dot ${c}"></span><span style="flex:1">${t}</span><span class="pill ${k}" style="padding:3px 8px">${st}</span></div><div class="bar"><i style="width:${p}%;background:${col}"></i></div></div>`).join(''); }},
   recovery:{name:'Recovery',src:'WHOOP',need:'whoop',go:null,render(){
-    return `<div class="wring">${ringSVG(.78,76,'#4ADE80')}<span>78%</span></div><div class="wcenter" style="margin:-2px 0 6px">recovery</div><div class="wcenter" style="color:var(--text);font-weight:600">Slept 7h 40m</div>`; }},
+    return `<div class="wring">${ringSVG(.78,76,"#FF7A1A")}<span>78%</span></div><div class="wcenter" style="margin:-2px 0 6px">recovery</div><div class="wcenter" style="color:var(--text);font-weight:600">Slept 7h 40m</div>`; }},
   sponsors:{name:'Sponsorship deals',src:'Made by Arcane',wide:1,need:null,arcane:1,go:null,render(){
     return [['Gymshark','$2,000','Signed','g'],['Liquid IV','$1,500','Pending','o'],['Ridge','$1,000','Pending','o']].map(([n,a,s,k])=>`<div class="airow"><div class="ico" style="background:var(--s2);color:var(--text)">${n[0]}</div><div style="flex:1"><div class="t">${n}</div><div class="s">${a}</div></div><span class="pill ${k}">${s}</span></div>`).join(''); }},
   calendar:{name:'Next up',src:'Google Calendar',need:'gcal',go:null,render(){
@@ -1484,15 +1491,15 @@ $$('#cseg button').forEach(b=>b.onclick=()=>{
 });
 /* ---------- inbox / DMs ---------- */
 const THREADS=[
-  {id:'crew',name:'Side Income Crew',grp:[['MS','#2a1420','#f9a8d4'],['LB','#1f2937','#93c5fd']],last:'Marcus: who\'s done all 5 today?',time:'4m',unread:true,sub:'5 members',
+  {id:'crew',name:'Side Income Crew',grp:[['MS','#1E1E21','#F4F4F5'],['LB','#1E1E21','#F4F4F5']],last:'Marcus: who\'s done all 5 today?',time:'4m',unread:true,sub:'5 members',
    msgs:[['stamp','Today 7:12 AM'],['them','Luis','Morning. Reel #2 done before work 💪'],['them','Chris','Nice. I\'m behind, catching up tonight'],['me','','Sample reel done. Messaging gym owners next'],['them','Marcus','Who\'s done all 5 today?']]},
-  {id:'derek',name:'Derek M.',av:['DM','#1f2937','#93c5fd'],last:'Send me that reel when it\'s done',time:'1h',unread:true,sub:'Early Risers',
+  {id:'derek',name:'Derek M.',av:['DM','#1E1E21','#F4F4F5'],last:'Send me that reel when it\'s done',time:'1h',unread:true,sub:'Early Risers',
    msgs:[['stamp','Yesterday'],['me','','How do you get up at 5 every day?'],['them','','Phone in the kitchen. Alarm across the room. No negotiating.'],['stamp','Today 8:40 AM'],['them','','Send me that reel when it\'s done']]},
-  {id:'andre',name:'Andre K.',av:['AK','#2a1c14','#fdba74'],last:'What are you charging per video?',time:'3h',unread:true,sub:'',
+  {id:'andre',name:'Andre K.',av:['AK','#1E1E21','#F4F4F5'],last:'What are you charging per video?',time:'3h',unread:true,sub:'',
    msgs:[['stamp','Today 6:58 AM'],['them','','Saw you\'re doing video for gyms too'],['them','','What are you charging per video?']]},
-  {id:'tyler',name:'Tyler R.',av:['TR','#10261b','#4ade80'],last:'You: Congrats on the contract!',time:'1d',unread:false,sub:'',
+  {id:'tyler',name:'Tyler R.',av:['TR','#1E1E21','#F4F4F5'],last:'You: Congrats on the contract!',time:'1d',unread:false,sub:'',
    msgs:[['stamp','Yesterday'],['them','','Signed my first lawn care contract today'],['me','','Congrats on the contract!']]},
-  {id:'nate',name:'Nate O.',av:['NO','#2a1c14','#fdba74'],last:'You: You good? Haven\'t seen you check in',time:'2d',unread:false,sub:'Side Income Crew',
+  {id:'nate',name:'Nate O.',av:['NO','#1E1E21','#F4F4F5'],last:'You: You good? Haven\'t seen you check in',time:'2d',unread:false,sub:'Side Income Crew',
    msgs:[['stamp','Sunday'],['me','','You good? Haven\'t seen you check in']]}
 ];
 const avHTML=a=>`<div class="av" style="background:${a[1]};color:${a[2]}">${a[0]}</div>`;
@@ -1531,26 +1538,26 @@ const APPS=[
     ['mac','Matt\'s MacBook Pro','Last used 2h ago',1,'#2a2a2e','#fff','⌘'],
     ['pc','Add a computer','Mac or PC',0,'#1E1E21','#8E8E93','+','pair']]],
   ['AI',[
-    ['chatgpt','ChatGPT','Design and images',1,'#10261b','#4ade80','G'],
-    ['claude','Claude','Code and writing',1,'#2a1c14','#fdba74','C'],
+    ['chatgpt','ChatGPT','Design and images',1,'#1E1E21','#F4F4F5','G'],
+    ['claude','Claude','Code and writing',1,'#1E1E21','#F4F4F5','C'],
     ['grok','Grok','',0,'#1E1E21','#fff','X'],
-    ['gemini','Gemini','',0,'#1f2937','#93c5fd','✦']]],
+    ['gemini','Gemini','',0,'#1E1E21','#F4F4F5','✦']]],
   ['Calendar & email',[
-    ['gcal','Google Calendar','',1,'#1f2937','#93c5fd','31'],
-    ['gmail','Gmail','',0,'#2a1414','#fca5a5','M'],
-    ['outlook','Outlook','',0,'#14202a','#7dd3fc','O']]],
+    ['gcal','Google Calendar','',1,'#1E1E21','#F4F4F5','31'],
+    ['gmail','Gmail','',0,'#1E1E21','#F4F4F5','M'],
+    ['outlook','Outlook','',0,'#1E1E21','#F4F4F5','O']]],
   ['Money',[
-    ['bank','Bank accounts','Checking, savings, cards',1,'#10261b','#4ade80','$'],
-    ['stripe','Stripe','',0,'#1f1a33','#a5b4fc','S']]],
+    ['bank','Bank accounts','Checking, savings, cards',1,'#1E1E21','#F4F4F5','$'],
+    ['stripe','Stripe','',0,'#1E1E21','#F4F4F5','S']]],
   ['Health & fitness',[
-    ['phorm','1st Phorm','Macros and nutrition',1,'#2a1c14','#FF7A1A','1P'],
+    ['phorm','1st Phorm','Macros and nutrition',1,'#1E1E21','#FF7A1A','1P'],
     ['hard','75 Hard','Daily tasks and streak',0,'#1E1E21','#fff','75'],
-    ['health','Apple Health','',0,'#2a1420','#f9a8d4','♥'],
+    ['health','Apple Health','',0,'#1E1E21','#F4F4F5','♥'],
     ['whoop','WHOOP','',0,'#1E1E21','#fff','W'],
-    ['mfp','MyFitnessPal','',0,'#14202a','#7dd3fc','F']]],
+    ['mfp','MyFitnessPal','',0,'#1E1E21','#F4F4F5','F']]],
   ['Work',[
     ['notion','Notion','',0,'#1E1E21','#fff','N'],
-    ['slack','Slack','',0,'#2a1420','#f9a8d4','#']]]
+    ['slack','Slack','',0,'#1E1E21','#F4F4F5','#']]]
 ];
 function renderApps(){
   $('#appsList').innerHTML = APPS.map(([sec,items])=>`<div class="section-label">${sec}</div><div class="list">${items.map(([id,nm,ds,on,bg,fg,ic,act])=>`<div class="li" style="cursor:default"><div class="appi" style="background:${bg};color:${fg};${id==='core'?'border:1px solid #333':''}">${id==='core'?'<span class="mini-core"></span>':ic}</div><div style="flex:1"><div class="nm" style="flex:none">${nm}</div>${ds&&on?`<div class="ds">${ds}</div>`:''}</div>${act==='pair'?`<button class="cbtn" data-pair>Connect</button>`:`<button class="cbtn${on?' on':''}" data-app="${id}">${on?'Connected':'Connect'}</button>`}</div>`).join('')}</div>`).join('') + '<p class="sub" style="text-align:center;margin-top:8px">You choose what each app can see.</p>';
@@ -1618,6 +1625,51 @@ addEventListener('resize', fit); fit();
 setVersion(true);
 renderSquares(); renderDash();
 go('welcome',{back:true});
+
+/* ---------- illustrated member avatars ---------- */
+const FACE_SPECS={
+  DM:{skin:'#e0ac8a',hair:'#3b2a1e',style:'short',beard:1,shirt:'#2e2e33'},
+  TR:{skin:'#f1c7a5',hair:'#b98b4e',style:'side',beard:0,shirt:'#3a3a40'},
+  AK:{skin:'#8d5a3b',hair:'#1b1512',style:'buzz',beard:1,shirt:'#26262b'},
+  MS:{skin:'#6b4228',hair:'#141010',style:'cap',beard:1,shirt:'#2b2b30',cap:'#111113'},
+  LB:{skin:'#c68e64',hair:'#22180f',style:'curly',beard:0,stache:1,shirt:'#34343a'},
+  CH:{skin:'#eab792',hair:'#7a4528',style:'cap',beard:1,shirt:'#2a2a2f',cap:'#3a3a3f'},
+  NO:{skin:'#d9a27c',hair:'#5a3a22',style:'messy',beard:0,shirt:'#303036'}
+};
+function faceSVG(f){
+  const hair={
+    short:`<path d="M20 27c-1-10 5-15 12-15s13 5 12 15c-2-6-6-8-12-8s-10 2-12 8z" fill="${f.hair}"/>`,
+    side:`<path d="M19 28c-2-11 5-17 13-17 9 0 14 6 13 15-3-6-9-9-17-7-4 1-7 4-9 9z" fill="${f.hair}"/>`,
+    buzz:`<path d="M20.5 26c1-8 5.5-12.5 11.5-12.5s10.5 4.5 11.5 12.5c-3-4-7-5.5-11.5-5.5s-8.5 1.5-11.5 5.5z" fill="${f.hair}" opacity=".9"/>`,
+    curly:`<g fill="${f.hair}"><circle cx="23" cy="20" r="5"/><circle cx="29" cy="16" r="5.5"/><circle cx="36" cy="16" r="5.5"/><circle cx="41.5" cy="20.5" r="5"/><circle cx="21" cy="25" r="3.5"/><circle cx="43" cy="25.5" r="3.5"/></g>`,
+    messy:`<path d="M19 28c-2-9 3-16 9-16 2-2 6-2 8 0 6 0 11 6 9 15-1-3-3-6-6-6-1 2-4 3-6 2-2 1-5 0-6-2-4 1-7 4-8 7z" fill="${f.hair}"/>`,
+    cap:''
+  }[f.style];
+  const cap = f.style==='cap' ? `<path d="M19 25c0-8 6-13.5 13-13.5s13 5.5 13 13.5z" fill="${f.cap}"/><path d="M17 25.5c4-2 26-2 30 0-1 2-4 2.5-15 2.5s-14-.5-15-2.5z" fill="${f.cap}" opacity=".85"/><circle cx="32" cy="12.5" r="1.2" fill="#555"/>` : '';
+  const beard = f.beard ? `<path d="M20.5 30c0 9 5 14.5 11.5 14.5s11.5-5.5 11.5-14.5c-1.5 3.5-4 5-5.5 5-2-1.8-3.8-2-6-2s-4 .2-6 2c-1.5 0-4-1.5-5.5-5z" fill="${f.hair}" opacity=".92"/>` : '';
+  const stache = f.stache ? `<path d="M27.5 35.5c2-1.6 7-1.6 9 0-1.5.8-3 .9-4.5.5-1.5.4-3 .3-4.5-.5z" fill="${f.hair}"/>` : '';
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="9 5 46 46"><defs><radialGradient id="g" cx="50%" cy="30%" r="80%"><stop offset="0" stop-color="#3a3a40"/><stop offset="1" stop-color="#141416"/></radialGradient></defs>
+<rect width="64" height="64" fill="url(#g)"/>
+<path d="M8 66c1.5-12 11.5-19 24-19s22.5 7 24 19z" fill="${f.shirt}"/>
+<path d="M27 40h10v8c0 2-10 2-10 0z" fill="${f.skin}" opacity=".85"/>
+<circle cx="20" cy="30" r="2.6" fill="${f.skin}"/><circle cx="44" cy="30" r="2.6" fill="${f.skin}"/>
+<ellipse cx="32" cy="29" rx="12" ry="14" fill="${f.skin}"/>
+${hair}${cap}${beard}
+<path d="M25.5 26.2h4.6M33.9 26.2h4.6" stroke="${f.hair}" stroke-width="1.4" stroke-linecap="round" opacity=".85"/>
+<circle cx="27.8" cy="29.3" r="1.25" fill="#161616"/><circle cx="36.2" cy="29.3" r="1.25" fill="#161616"/>
+<path d="M31.5 30.5l-.8 3.6h2.4" stroke="rgba(0,0,0,.22)" stroke-width="1" fill="none" stroke-linecap="round"/>
+${stache}<path d="M29.2 37.3q2.8 1.4 5.6 0" stroke="rgba(60,25,15,.55)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+</svg>`;
+}
+const FACES={}; Object.keys(FACE_SPECS).forEach(k=>FACES[k]='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(faceSVG(FACE_SPECS[k])));
+function paintAvatars(){
+  document.querySelectorAll('.av:not(.me-av)').forEach(el=>{
+    const k=el.textContent.trim()||el.dataset.face||"";
+    if(FACES[k]){ el.dataset.face=k; el.style.background=`url("${FACES[k]}") center/cover`; el.style.color='transparent'; }
+  });
+}
+paintAvatars();
+new MutationObserver(()=>paintAvatars()).observe(document.body,{childList:true,subtree:true});
 </script>
 </body>
 </html>
