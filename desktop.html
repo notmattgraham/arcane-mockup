@@ -233,7 +233,9 @@ h1{font-size:28px;font-weight:700;letter-spacing:-.02em}
 [data-list="crit"] .task.done.slashing,[data-list="crit"] .task.done:has(+ .blade),[data-list="crit"] .task.done.collapse{display:flex}
 .task{transition:height .32s ease, margin .32s ease, padding .32s ease, opacity .2s}
 .task.collapse{height:0 !important;margin-bottom:0;padding-top:0;padding-bottom:0;overflow:hidden;opacity:0}
-.donetoggle{font-size:12px;font-weight:500;color:var(--muted)}
+.donetoggle{font-size:11px;font-weight:500;color:var(--dim)}
+[data-list="crit"]{overflow-x:hidden}
+.task.slideout{transform:translateX(115%);opacity:0;transition:transform .28s cubic-bezier(.4,0,.6,1), opacity .28s, height .3s, margin .3s, padding .3s}
 .blade{position:absolute;height:3px;border-radius:3px;z-index:5;pointer-events:none;transform-origin:left center;transform:rotate(-5deg) scaleX(0);background:linear-gradient(90deg,rgba(255,255,255,0),#fff 30%,#FFD2AE 60%,#FF7A1A 85%,rgba(255,122,26,0));box-shadow:0 0 12px 3px rgba(255,160,90,.75),0 0 2px #fff;transition:transform .17s cubic-bezier(.6,0,.2,1), opacity .3s}
 .blade.cut{transform:rotate(-5deg) scaleX(1)}
 .blade.fade{opacity:0}
@@ -686,18 +688,9 @@ const TODO=[['Get the oil changed',0],['Text Marcus back',0],['Return Amazon pac
 /* sword slash on completed tasks */
 var showDone=false;
 function slashAway(el, after){
-  const box=el.parentNode, x=el.offsetLeft, y=el.offsetTop, w=el.offsetWidth, h=el.offsetHeight;
-  const line=document.createElement('div'); line.className='blade';
-  line.style.cssText=`left:${x-10}px;top:${y+h/2-1.5}px;width:${w+20}px`;
-  box.appendChild(line);
-  requestAnimationFrame(()=>line.classList.add('cut'));
-  setTimeout(()=>{
-    const shards=['top','bot'].map(k=>{ const s=el.cloneNode(true); s.classList.add('shard',k); s.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`; box.appendChild(s); return s; });
-    el.style.visibility='hidden';
-    requestAnimationFrame(()=>{ shards.forEach(s=>s.classList.add('go')); line.classList.add('fade'); });
-    setTimeout(()=>el.classList.add('collapse'),120);
-    setTimeout(()=>{ shards.forEach(s=>s.remove()); line.remove(); after&&after(); },620);
-  },170);
+  el.classList.add('slideout');
+  setTimeout(()=>el.classList.add('collapse'),260);
+  setTimeout(()=>{ after&&after(); },560);
 }
 document.addEventListener('click',e=>{ if(e.target.id==='doneToggle'){ showDone=!showDone; renderTasks(); } });
 
@@ -712,7 +705,7 @@ function renderTasks(){
     el.classList.add('done','slashing'); slashAway(el, ()=>{ CRIT[i][3]=1; renderTasks(); });
   });
   const nd=CRIT.filter(c=>c[3]).length, dt=$('#doneToggle');
-  dt.hidden=!nd; dt.textContent=(showDone?'Hide':'Show')+` completed (${nd})`;
+  dt.hidden=!nd; dt.textContent=showDone?"Hide done":`${nd} done`;
   $$('[data-list="crit"]').forEach(el=>el.classList.toggle('showdone',showDone));
   $$('[data-ti]').forEach(b=>b.onclick=()=>{ TODO[b.dataset.ti][1]^=1; renderTasks(); });
   renderWeek(done);
