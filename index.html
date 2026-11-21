@@ -333,6 +333,24 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .task .tb{flex:1;min-width:0}
 .task .t{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .task .rec{margin-left:0;color:var(--muted)}
+#tasks,#sqList{position:relative}
+#sqList .shard{background:var(--s1)}
+.sqall{padding:14px 0 6px;font-size:15px;font-weight:600;color:var(--orange)}
+#tasks .task.done{display:none}
+#tasks.showdone .task.done{display:flex;opacity:.55}
+#tasks .task.done.slashing{display:flex;opacity:1}
+.task{transition:height .32s ease, margin .32s ease, padding .32s ease, opacity .2s}
+.task.collapse{height:0 !important;margin-bottom:0;padding-top:0;padding-bottom:0;overflow:hidden;opacity:0}
+.donetoggle{font-size:13px;font-weight:500;color:var(--muted)}
+.blade{position:absolute;height:3px;border-radius:3px;z-index:5;pointer-events:none;transform-origin:left center;transform:rotate(-5.5deg) scaleX(0);
+  background:linear-gradient(90deg,rgba(255,255,255,0),#fff 30%,#FFD2AE 60%,#FF7A1A 85%,rgba(255,122,26,0));box-shadow:0 0 12px 3px rgba(255,160,90,.75),0 0 2px #fff;transition:transform .17s cubic-bezier(.6,0,.2,1), opacity .3s}
+.blade.cut{transform:rotate(-5.5deg) scaleX(1)}
+.blade.fade{opacity:0}
+.shard{position:absolute !important;margin:0 !important;display:flex !important;pointer-events:none;z-index:4;transition:transform .5s cubic-bezier(.15,.7,.3,1), opacity .5s ease}
+.shard.top{clip-path:polygon(0 0,100% 0,100% 25%,0 75%)}
+.shard.bot{clip-path:polygon(0 75%,100% 25%,100% 100%,0 100%)}
+.shard.top.go{transform:translate(46px,-22px) rotate(-5deg);opacity:0}
+.shard.bot.go{transform:translate(-46px,22px) rotate(4deg);opacity:0}
 .tabav{width:26px;height:26px;border-radius:50%;display:block;opacity:.75}
 .tab.on .tabav{opacity:1;box-shadow:0 0 0 2px var(--bg),0 0 0 3.5px #fff}
 .inbox{display:flex;align-items:center;gap:12px;padding:14px 16px;background:var(--s1);border-radius:18px;cursor:pointer}
@@ -631,7 +649,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
           </div>
           <div class="days" id="days"></div>
           <div class="scroll" id="todayScroll">
-            <div class="sec-title"><span>Critical tasks</span></div>
+            <div class="sec-title"><span>Critical tasks</span><button class="donetoggle" id="doneToggle"><span>Show completed</span></button></div>
             <div id="tasks">
               <div class="task done"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Hit macros</div><div class="m"><span class="rec">↻ Recurring</span></div></div></div>
               <div class="task done"><button class="check"><svg width="14" height="14"><use href="#tick"/></svg></button><div class="tb"><div class="t">Publish 2 short-form videos</div></div></div>
@@ -1407,8 +1425,9 @@ function todayDone(){ return $$('#tasks .task.done').length; }
 function renderSquares(){
   const tasks=$$('#tasks .task');
   $('#sqs').innerHTML=tasks.map(t=>`<i class="${t.classList.contains('done')?'f':''}"></i>`).join('');
-  $('#sqList').innerHTML=tasks.map((t,i)=>`<div class="sqrow${t.classList.contains('done')?' done':''}"><button class="check" data-sq="${i}"><svg width="13" height="13"><use href="#tick"/></svg></button><span class="t">${t.querySelector('.t').childNodes[0].textContent.trim()}</span></div>`).join('');
-  $$('[data-sq]').forEach(b=>b.onclick=()=>{ tasks[+b.dataset.sq].querySelector('.check').click(); });
+  const left=tasks.filter(t=>!t.classList.contains('done')).length;
+  $('#sqList').innerHTML=(left?'':`<div class="sqall">All 5 done today.</div>`)+tasks.map((t,i)=>t.classList.contains('done')?'':`<div class="sqrow"><button class="check" data-sq="${i}"><svg width="13" height="13"><use href="#tick"/></svg></button><span class="t">${t.querySelector('.t').childNodes[0].textContent.trim()}</span></div>`).join('');
+  $$('[data-sq]').forEach(b=>b.onclick=()=>{ const row=b.closest('.sqrow'); row.classList.add('done'); slashAway(row, ()=>tasks[+b.dataset.sq].querySelector('.check').click()); });
 }
 /* chat history drawer */
 const HISTORY=[
@@ -1439,7 +1458,34 @@ function updateRing(){
   $('#ringArc').style.strokeDashoffset = 144.5*(1-done/5);
   renderWeek();
 }
-$$('#tasks .check').forEach(c=>c.onclick=()=>{ c.closest('.task').classList.toggle('done'); updateRing(); });
+/* sword slash: a blade cuts the card, the halves fly apart, the gap closes */
+function slashAway(el, after){
+  const box=el.parentNode, x=el.offsetLeft, y=el.offsetTop, w=el.offsetWidth, h=el.offsetHeight;
+  const line=document.createElement('div'); line.className='blade';
+  line.style.cssText=`left:${x-10}px;top:${y+h/2-1.5}px;width:${w+20}px`;
+  box.appendChild(line);
+  requestAnimationFrame(()=>line.classList.add('cut'));
+  setTimeout(()=>{
+    const shards=['top','bot'].map(k=>{ const s=el.cloneNode(true); s.classList.add('shard',k); s.style.cssText=`left:${x}px;top:${y}px;width:${w}px;height:${h}px`; box.appendChild(s); return s; });
+    el.style.visibility='hidden';
+    requestAnimationFrame(()=>{ shards.forEach(s=>s.classList.add('go')); line.classList.add('fade'); });
+    setTimeout(()=>{ el.classList.add('collapse'); },120);
+    setTimeout(()=>{ shards.forEach(s=>s.remove()); line.remove(); el.style.visibility=''; el.classList.remove('collapse'); after&&after(); },620);
+  },170);
+}
+function toggleTask(t){
+  if(t.classList.contains('done')){ t.classList.remove('done'); updateRing(); return; }
+  t.classList.add("done","slashing"); updateRing();
+  if($('#v-today').classList.contains('on') && !$('#tasks').classList.contains('showdone')) slashAway(t, ()=>{ t.classList.remove("slashing"); updateDoneToggle(); });
+  else { t.classList.remove("slashing"); updateDoneToggle(); }
+}
+function updateDoneToggle(){
+  const n=$$('#tasks .task.done').length, b=$('#doneToggle');
+  b.hidden=!n; b.querySelector('span').textContent=$('#tasks').classList.contains('showdone')?`Hide completed (${n})`:`Show completed (${n})`;
+}
+$$('#tasks .check').forEach(c=>c.onclick=()=>toggleTask(c.closest('.task')));
+$('#doneToggle').onclick=()=>{ $('#tasks').classList.toggle('showdone'); updateDoneToggle(); };
+updateDoneToggle();
 /* ---------- dashboard ---------- */
 function appOn(id){ let on=0; APPS.forEach(([,it])=>it.forEach(a=>{ if(a[0]===id) on=a[3]; })); return on; }
 function miniRing(p){ const L=56.5; return `<svg width="26" height="26" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#2A2A2E" stroke-width="3.5" fill="none"/>${p>0?`<circle cx="12" cy="12" r="9" stroke="#FF7A1A" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-dasharray="${L}" stroke-dashoffset="${L*(1-p)}" transform="rotate(-90 12 12)"/>`:''}</svg>`; }
